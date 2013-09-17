@@ -1,0 +1,60 @@
+{
+ "kind": "youtube#video",
+ "etag": "\"6jI4SSPcXxEAc3i_1EQHOPi0Cvc/oANJN1hf5r1g84Pb1VEF4l-I_fE\"",
+ "id": "6T9j0Uqxamo",
+ "snippet": {
+  "publishedAt": "2010-10-13T13:43:43.000Z",
+  "channelId": "UCFXno2GGPrAW-XU0pOc4QoA",
+  "title": "JetBlue - Nothing to Hide with CEO, Dave Barger",
+  "description": "JetBlue's CEO, Dave Barger, has a lot to say and nothing to hide. \r\n\r\nDon't forget to like us on Facebook http://www.facebook.com/JetBlue and follow us on Twitter http://twitter.com/jetblue\r\n\r\nWatch more You Above All videos:\r\n\r\nJetBlue - Fly Full\r\nhttp://www.youtube.com/watch?v=fVH-bAWa-dk \r\n\r\nJetBlue - Stretch Out\r\nhttp://www.youtube.com/watch?v=TmYuxQ8mG7M\r\n\r\nJetBlue - Dance with Us\r\nhttp://www.youtube.com/watch?v=OMzVxAHNfmM",
+  "thumbnails": {
+   "default": {
+    "url": "https://i1.ytimg.com/vi/6T9j0Uqxamo/default.jpg"
+   },
+   "medium": {
+    "url": "https://i1.ytimg.com/vi/6T9j0Uqxamo/mqdefault.jpg"
+   },
+   "high": {
+    "url": "https://i1.ytimg.com/vi/6T9j0Uqxamo/hqdefault.jpg"
+   },
+   "standard": {
+    "url": "https://i1.ytimg.com/vi/6T9j0Uqxamo/sddefault.jpg"
+   },
+   "maxres": {
+    "url": "https://i1.ytimg.com/vi/6T9j0Uqxamo/maxresdefault.jpg"
+   }
+  },
+  "channelTitle": "jetblue",
+  "categoryId": "19"
+ },
+ "contentDetails": {
+  "duration": "PT1M2S",
+  "dimension": "2d",
+  "definition": "hd",
+  "caption": "true",
+  "licensedContent": false,
+  "contentRating": {
+   "ytRating": ""
+  }
+ },
+ "status": {
+  "uploadStatus": "processed",
+  "privacyStatus": "public",
+  "license": "youtube",
+  "embeddable": true,
+  "publicStatsViewable": true
+ },
+ "statistics": {
+  "viewCount": "26263",
+  "likeCount": "70",
+  "dislikeCount": "4",
+  "favoriteCount": "0",
+  "commentCount": "12"
+ },
+ "topicDetails": {
+  "topicIds": [
+   "/m/020v6m",
+   "/m/0dq_5"
+  ]
+ }
+}

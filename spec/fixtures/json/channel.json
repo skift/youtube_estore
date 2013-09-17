@@ -1,0 +1,40 @@
+{
+ "kind": "youtube#channel",
+ "etag": "\"6jI4SSPcXxEAc3i_1EQHOPi0Cvc/0oLkAYtN9taY7UDzmBGq1tMPlbg\"",
+ "id": "UCFXno2GGPrAW-XU0pOc4QoA",
+ "snippet": {
+  "title": "jetblue",
+  "description": "The official JetBlue YouTube channel. \n\nHave a question? Follow us on Twitter at http://twitter.com/jetblue and let us help!\n\nFor official customer concerns, go to http://jetblue.com/speakup or call 1-800-JETBLUE \n\nDon't forget to like us on Facebook at http://www.facebook.com/JetBlue",
+  "publishedAt": "2006-03-14T21:30:55.000Z",
+  "thumbnails": {
+   "default": {
+    "url": "https://lh3.googleusercontent.com/-QzGqZFJlATc/AAAAAAAAAAI/AAAAAAAAAAA/uSOLO9L3bYU/s88-c-k/photo.jpg"
+   }
+  }
+ },
+ "contentDetails": {
+  "relatedPlaylists": {
+   "uploads": "UUFXno2GGPrAW-XU0pOc4QoA"
+  },
+  "googlePlusUserId": "116231275712864965257"
+ },
+ "statistics": {
+  "viewCount": "2016940",
+  "commentCount": "181",
+  "subscriberCount": "2850",
+  "hiddenSubscriberCount": false,
+  "videoCount": "48"
+ },
+ "topicDetails": {
+  "topicIds": [
+   "/m/020v6m",
+   "/m/0vg8",
+   "/m/01jddz",
+   "/m/0p1l2",
+   "/m/0dl567",
+   "/m/0cmdv8y",
+   "/m/01lyv",
+   "/m/06924p"
+  ]
+ }
+}
