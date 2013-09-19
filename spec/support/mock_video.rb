@@ -12,19 +12,22 @@ ActiveRecord::Schema.define do
     t.datetime  :published_at
     t.datetime  :updated_at
 
-    t.datetime  :rails_created_at
-    t.datetime  :rails_updated_at
-
     t.integer   :view_count
     t.integer   :favorite_count
     t.float     :latitude
     t.float     :longitude
     t.string    :unique_id
     t.boolean   :is_embeddable  
-    t.float     :average_rating
     t.integer   :likes
     t.integer   :dislikes
-    t.integer   :rater_count
+    t.float     :average_rating
+
+    t.string    :t_id
+    t.string    :channel_id
+
+    t.datetime  :rails_created_at
+    t.datetime  :rails_updated_at
+
   end
 end
 
