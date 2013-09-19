@@ -6,7 +6,7 @@ module YoutubeEstore
     validates_presence_of :t_id
     validates_uniqueness_of :t_id
 
-    attr_accessible :t_id, :duration
+    attr_accessible :t_id, :duration, :likes, :dislikes
 
 
 ################### Class Methods #######################
