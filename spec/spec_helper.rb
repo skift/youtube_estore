@@ -17,7 +17,7 @@ DATUMS_HASH = Hashie::Mash.new
 def Testdatum(datum_name, opts={})
   json_fname = File.join JSON_FIXTURE_DIR, "#{datum_name}.json"
   
-  DATUMS_HASH[datum_name] ||= open(json_fname, 'r'){|f| JSON.parse(f.read)}
+  DATUMS_HASH[datum_name] ||= open(json_fname, 'r'){|f| Hashie::Mash.new JSON.parse(f.read)}
 end
 
 ActiveRecord::Base.establish_connection(

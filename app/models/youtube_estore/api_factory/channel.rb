@@ -1,8 +1,7 @@
 module YoutubeEstore
   module ApiFactory
-    def self.channel
-
-
+    def self.Channel(obj)
+      return Channel.new()
     end
   end
 end
