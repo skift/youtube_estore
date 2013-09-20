@@ -11,7 +11,7 @@ require 'pry'
 require 'database_cleaner'
 DatabaseCleaner.strategy = :truncation
 
-JSON_FIXTURE_DIR = File.expand_path("../fixtures/youtube_estore/jsons", __FILE__)
+JSON_FIXTURE_DIR = File.expand_path("../fixtures/json", __FILE__)
 DATUMS_HASH = Hashie::Mash.new
 
 def Testdatum(datum_name, opts={})
