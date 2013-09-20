@@ -20,7 +20,7 @@ ActiveRecord::Schema.define do
     t.boolean   :is_embeddable  
     t.integer   :likes, default: 0
     t.integer   :dislikes, default: 0
-    t.float     :average_rating, default: 0
+    t.float     :approval_rating, default: 0
 
     t.string    :t_id
     t.string    :channel_id

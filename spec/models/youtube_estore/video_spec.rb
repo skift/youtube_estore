@@ -2,8 +2,7 @@ require 'spec_helper'
 
 module YoutubeEstore
   describe Video do
-    pending "add some examples to (or delete) #{__FILE__}"
-
+    
     it 'should belong to a user' do 
       @video = Video.create(t_id: 1)
       @channel = Channel.create(t_id: 2)

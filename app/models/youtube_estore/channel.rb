@@ -7,13 +7,23 @@ module YoutubeEstore
 
     attr_accessible :t_id, :video_count
 
-    # alias_method :number_of_subscribers, :subscriber_count
-    # alias_method :number_of_video_views, :upload_views
-    # alias_method :number_of_uploads, :video_count
+    def method_missing(meth, *args, &block)
+      if meth.match(/(\w+)(?:_of_videos|_videos)$/)
+        foo = $1
+        videos.send(foo, *args, &block)
+      else
+        super
+      end
+    end
 
-    # alias_method :subscriber_count, :number_of_subscribers
-    # alias_method :upload_views, :number_of_video_views
-    # alias_method :video_count, :number_of_uploads
+
+    def respond_to?(meth, x=false)
+      if meth.match(/(\w+)(?:_of_videos|_videos)$/)
+        true
+      else
+        super
+      end
+    end
 
   end
 end

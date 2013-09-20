@@ -1,59 +1,65 @@
 module YoutubeEstore
   class Video < ActiveRecord::Base
-    before_save :calculate_average_rating
+    before_save :calculate_approval_rating
 
     belongs_to :channel, primary_key: :t_id
     validates_presence_of :t_id
     validates_uniqueness_of :t_id
 
-    attr_accessible :t_id, :duration, :likes, :dislikes
+    attr_accessible :t_id, :duration, :likes, :dislikes, :view_count
+
+
 
 
 ################### Class Methods #######################
 
-    def self.average_duration
+   # returns integer
+    def self.average_duration   # channel.     average_duration   _of_videos
        self.average(:duration)
     end
 
-    def self.maximum_duration
-      self.maximum(:duration)
+    # returns float
+    def self.overall_approval_rating  # channel.overall_approval_rating_of_videos
+      self.sum(:likes).to_f / (self.sum(:likes) + self.sum(:dislikes))
+    end
+
+
+
+
+    def self.longest(lim=1) # longest_videos
+      self.order("duration DESC").limit(lim)
     end
 
     def self.most_liked(lim=10)
-      self.maximum(:likes).limit(lim)
-      # pending "come back to this - clearly this isn't enough"
+      self.order("likes DESC").limit(lim)
     end
 
-    def self.most_unliked(lim=10)
-      self.maximum(:dislikes).limit(lim)
-      # pending "come back to this - clearly this isn't enough"
+    def self.most_disliked(lim=10)
+      self.order("dislikes DESC").limit(lim)
     end
 
-    def self.most_views(lim=10)
-      self.maximum(:view_count).limit(lim)
+    def self.most_viewed(lim=10)
+      self.order("view_count DESC").limit(lim)
     end
 
-    def self.average_rating_of_videos
-      self.sum(:likes) / (self.sum(:likes) + self.sum(:dislikes))
+
+    def self.highest_rated(lim=10)
+      self.order("approval_rating DESC").limit(lim)
     end
 
-    def self.videos_with_highest_average_rating(lim=10)
-      self.maximum(:average_rating).limit(lim)
-    end
-
-    def self.videos_with_lowest_average_rating(lim=10)
-      self.minimum(:average_rating).limit(lim)
+    def self.lowest_rated(lim=10)
+      self.order("approval_rating ASC").limit(lim)
     end
 
 
     private
 
-    def calculate_average_rating
+    def calculate_approval_rating
       total = (self.likes + self.dislikes).to_f
       if total == 0
-        self.average_rating = 0
+        self.approval_rating = 0
       else
-        self.average_rating = self.likes / total
+        self.approval_rating = self.likes / total
       end
     end
 
