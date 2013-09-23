@@ -5,7 +5,11 @@ module YoutubeEstore
     validates_presence_of :t_id
     validates_uniqueness_of :t_id
 
-    attr_accessible :t_id, :video_count
+    attr_accessible :age, :description, :subscriber_count, :video_count, :username, :view_count, :default_thumbnail, :t_id
+
+
+
+
 
     def method_missing(meth, *args, &block)
       if meth.match(/(\w+)(?:_of_videos|_videos)$/)
