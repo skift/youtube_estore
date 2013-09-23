@@ -21,8 +21,8 @@ def Testdatum(datum_name, opts={})
 end
 
 ActiveRecord::Base.establish_connection(
-  :adapter => "sqlite3",
-  :database => ":memory:"
+  :adapter => "mysql2",
+  :database => "test_youtube_estore"
 )
 ActiveRecord::Migration.verbose = false
 

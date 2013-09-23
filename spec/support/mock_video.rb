@@ -1,5 +1,5 @@
 ActiveRecord::Schema.define do
-  create_table :youtube_estore_videos do |t|
+  create_table :youtube_estore_videos, force: true do |t|
     t.integer   :duration
     t.string    :racy
     t.string    :widescreen 

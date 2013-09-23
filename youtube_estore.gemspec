@@ -18,11 +18,12 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.2.14"
   s.add_dependency 'hashie'
+  s.add_dependency 'aggtive_record'
 
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "pry-rails"
   s.add_development_dependency 'database_cleaner', '=1.0.1'
 
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "mysql2"
 end

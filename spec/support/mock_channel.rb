@@ -1,5 +1,5 @@
 ActiveRecord::Schema.define do
-    create_table :youtube_estore_channels do |t|
+    create_table :youtube_estore_channels,force: true do |t|
         t.integer   :age
         t.string    :company
         t.string    :description

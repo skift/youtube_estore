@@ -1,5 +1,8 @@
 module YoutubeEstore
   class Video < ActiveRecord::Base
+    include YoutubeConventions
+    attr_datetime :published_at
+
     before_save :calculate_approval_rating
 
     belongs_to :channel, primary_key: :t_id
