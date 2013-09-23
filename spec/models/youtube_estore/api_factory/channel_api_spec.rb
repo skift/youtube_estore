@@ -18,9 +18,39 @@ module YoutubeEstore
           expect(ApiFactory.Channel(@channel_object)).to be_new_record
         end
 
+        it 'should be valid upon save' do 
+           channel = ApiFactory.Channel(@channel_object)
+           channel.save
+           expect(channel).to be_valid
+        end
+
         it 'should have a t_id set to id of the youtube data object' do 
           expect(ApiFactory.Channel(@channel_object).t_id).to eq @channel_object[:id]
         end
+
+
+        context 'update an existing Channel by :t_id' do 
+
+          it 'should update the objects attributes' do 
+            @channel = ApiFactory.Channel(@channel_object)
+            @channel.save
+
+            @channel = Channel.where(t_id: @channel.t_id).first # just to be safe to reload the object
+
+            ## The test:
+            ## make sure an object with the same t_id as an existing Channel
+            ## *does not* create a new Channel, but merely updates the attributes
+            new_object = @channel_object.dup
+            new_object.statistics['viewCount'] = 999 
+
+            @updated_channel = ApiFactory.Channel(new_object)
+
+            expect(@updated_channel.id).to eq @channel.id
+            expect(@updated_channel.view_count).to eq 999
+            expect(@updated_channel).not_to be_new_record
+          end
+        end
+
       end
 
 
