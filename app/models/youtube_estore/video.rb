@@ -9,16 +9,14 @@ module YoutubeEstore
     validates_presence_of :t_id
     validates_uniqueness_of :t_id
 
-    attr_accessible :t_id, :duration, :likes, :dislikes, :view_count, :published_at
-
-
+    attr_accessible :duration_seconds, :category_id, :description, :title, :published_at, :view_count, :favorite_count, :is_embeddable, :likes, :dislikes, :approval_rating, :t_id, :channel_id, :username, :default_thumbnail, :category_id, :comment_count
 
 
 ################### Class Methods #######################
 
    # returns integer
     def self.average_duration   # channel.     average_duration   _of_videos
-       self.average(:duration)
+       self.average(:duration_seconds)
     end
 
     # returns float
@@ -30,7 +28,7 @@ module YoutubeEstore
 
 
     def self.longest(lim=1) # longest_videos
-      self.order("duration DESC").limit(lim)
+      self.order("duration_seconds DESC").limit(lim)
     end
 
     def self.most_liked(lim=10)
@@ -55,6 +53,15 @@ module YoutubeEstore
     end
 
 
+
+
+    def self.convert_iso8601_to_seconds(string)
+      min, sec = string.match(/^PT(\d*)M(\d*)S$/)[1..2]
+      total = min.to_i*60 + sec.to_i
+    end
+
+
+
     private
 
     def calculate_approval_rating
@@ -65,8 +72,6 @@ module YoutubeEstore
         self.approval_rating = self.likes / total
       end
     end
-
-
 
 
   end

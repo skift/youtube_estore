@@ -36,8 +36,8 @@ module YoutubeEstore
     context 'delegation to videos' do 
        before(:each) do 
           @channel = YoutubeEstore::Channel.create(t_id: 1)
-          @channel.videos << @video1 = Video.create(t_id: 1, duration: 10, likes: 10, dislikes: 40, view_count: 200)
-          @channel.videos << @video2 = Video.create(t_id: 2, duration: 20, likes: 20, dislikes: 20, view_count: 100)    
+          @channel.videos << @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200)
+          @channel.videos << @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100)    
         end
 
 

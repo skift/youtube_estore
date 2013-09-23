@@ -8,12 +8,12 @@ module YoutubeEstore
       context 'class methods' do 
       
         before(:each) do 
-          @video1 = Video.create(t_id: 1, duration: 10, likes: 10, dislikes: 40, view_count: 200)
-          @video2 = Video.create(t_id: 2, duration: 20, likes: 20, dislikes: 20, view_count: 100)    
+          @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200)
+          @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100)    
         end
 
         it '.average_duration should calculate the average duration' do
-          expect(Video.average_duration).to eq ((@video1.duration + @video2.duration) / 2)
+          expect(Video.average_duration).to eq ((@video1.duration_seconds + @video2.duration_seconds) / 2)
         end
 
         it '.longest should return the longest video by :duration' do
@@ -63,8 +63,8 @@ module YoutubeEstore
      context 'instance methods' do 
       
         before(:each) do 
-          @video1 = Video.create(t_id: 1, duration: 10, likes: 10, dislikes: 40, view_count: 200)
-          @video2 = Video.create(t_id: 2, duration: 20, likes: 20, dislikes: 20, view_count: 100)    
+          @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200)
+          @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100)    
         end
 
         it 'calculates :approval_rating upon saving' do
