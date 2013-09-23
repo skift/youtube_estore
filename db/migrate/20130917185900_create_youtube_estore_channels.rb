@@ -1,8 +1,17 @@
 class CreateYoutubeEstoreChannels < ActiveRecord::Migration
   def change
-    create_table :youtube_estore_channels do |t|
+    create_table :youtube_estore_channels, force: true do |t|
+        t.integer   :age
+        t.string    :description
+        t.integer   :subscriber_count
+        t.integer   :video_count
+        t.string    :username
+        t.integer   :view_count
+        t.string    :default_thumbnail
+        t.string    :t_id
 
-      t.timestamps
+        t.timestamp :rails_created_at
+        t.timestamp :rails_updated_at
     end
   end
 end

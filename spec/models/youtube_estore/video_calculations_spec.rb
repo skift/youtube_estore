@@ -47,10 +47,20 @@ module YoutubeEstore
         it 'lowest_rated(lim=10)' do
           expect(Video.lowest_rated.first).to eq @video1
         end
-
       end
 
-      context 'instance methods' do 
+   
+
+      context 'within :past scope' do 
+        it 'should have :highest_rated in :past_month' do 
+          @video1 = Video.create(t_id: 1, likes: 20, dislikes: 1, published_at: 1.year.ago )
+          @video2 = Video.create(t_id: 2, likes: 1, dislikes: 20, published_at: 1.week.ago )
+
+          expect(Video.highest_rated.past_month.to_a).to eq [@video2]
+        end
+      end
+
+     context 'instance methods' do 
       
         before(:each) do 
           @video1 = Video.create(t_id: 1, duration: 10, likes: 10, dislikes: 40, view_count: 200)
@@ -64,10 +74,6 @@ module YoutubeEstore
           expect(@video.approval_rating).to eq 0.1
         end
       end
-
-
-
-
     end
 
     context Channel do 
