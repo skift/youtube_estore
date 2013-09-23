@@ -8,12 +8,24 @@ module YoutubeEstore
       context 'class methods' do 
       
         before(:each) do 
-          @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200)
-          @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100)    
+          @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, favorite_count: 6, view_count: 200)
+          @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, favorite_count: 2, view_count: 100)    
         end
 
         it '.average_duration should calculate the average duration' do
           expect(Video.average_duration).to eq ((@video1.duration_seconds + @video2.duration_seconds) / 2)
+        end
+
+        it '.likes_count should calculate the total number of likes for all videos' do
+          expect(Video.likes_count).to eq (@video1.likes + @video2.likes)
+        end
+
+        it '.dislikes_count should calculate the total number of likes for all videos' do
+          expect(Video.dislikes_count).to eq (@video1.dislikes + @video2.dislikes)
+        end
+
+        it '.favorites_count should calculate the total number of likes for all videos' do
+          expect(Video.favorites_count).to eq (@video1.favorite_count + @video2.favorite_count)
         end
 
         it '.longest should return the longest video by :duration' do

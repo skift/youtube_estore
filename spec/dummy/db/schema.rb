@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20130917185900) do
     t.string   "title"
     t.datetime "published_at"
     t.integer  "view_count"
-    t.integer  "favorite_count"
+    t.integer  "favorite_count",   :default => 0
     t.integer  "comment_count"
     t.boolean  "is_embeddable"
     t.integer  "likes",            :default => 0

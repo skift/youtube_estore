@@ -24,7 +24,17 @@ module YoutubeEstore
       self.sum(:likes).to_f / (self.sum(:likes) + self.sum(:dislikes))
     end
 
+    def self.likes_count
+      self.sum(:likes)
+    end
 
+    def self.dislikes_count
+      self.sum(:dislikes)
+    end
+
+    def self.favorites_count
+      self.sum(:favorite_count)
+    end
 
 
     def self.longest(lim=1) # longest_videos
