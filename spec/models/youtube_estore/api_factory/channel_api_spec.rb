@@ -30,39 +30,38 @@ module YoutubeEstore
           @channel = ApiFactory.Channel(@channel_object)
         end
 
-        context 'descriptive attributes' do 
+        context 'descriptive attributes' do
+          it 'should set :published_at to obj.snippet.publishedAt' do
+            expect(@channel.published_at).to eq @channel_object.snippet.publishedAt
+          end
+
           it 'should set :description to obj.snippet.description' do 
             expect(@channel.description).to eq @channel_object.snippet.description
           end
-        end
 
+          it 'should set :username to obj.snippet.title' do 
+            expect(@channel.username).to eq @channel_object.snippet.title
+          end
+
+          it 'should set :default_thumbnail to obj.snippet.thumbnails[:default][:url]' do 
+            expect(@channel.default_thumbnail).to eq @channel_object.snippet.thumbnails[:default][:url]
+          end
+        end
 
         context 'statistical attributes' do 
           it 'should set :subscriber_count to obj.statistics.subscriberCount' do 
             expect(@channel.subscriber_count).to eq @channel_object.statistics.subscriberCount.to_i
           end
+
+          it 'should set :video_count to obj.statistics.videoCount' do 
+            expect(@channel.video_count).to eq @channel_object.statistics.videoCount.to_i
+          end
+
+          it 'should set :view_count to obj.statistics.viewCount' do 
+            expect(@channel.view_count).to eq @channel_object.statistics.viewCount.to_i
+          end
         end
       end
-
-
-
-
-
-
-      # attributes_hash[:age] = obj.snippet.publishedAt
-      # attributes_hash[:description] = obj.snippet.description
-      # attributes_hash[:subscriber_count] = obj.statistics.subscriberCount
-      # attributes_hash[:video_count] = obj.statistics.videoCount
-      # attributes_hash[:username] = obj.snippet.title
-      # attributes_hash[:view_count] = obj.statistics.viewCount
-      # attributes_hash[:default_thumbnail] = obj.snippet.thumbnails[:default][:url]
-      # attributes_hash[:t_id] = obj.id
-
-
-
-
-    
-
     end
   end
 end

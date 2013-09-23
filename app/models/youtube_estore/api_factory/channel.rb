@@ -2,7 +2,7 @@ module YoutubeEstore
   module ApiFactory
     def self.Channel(obj)
       attributes_hash = {}
-      attributes_hash[:age] = obj.snippet.publishedAt
+      attributes_hash[:published_at] = obj.snippet.publishedAt
       attributes_hash[:description] = obj.snippet.description
       attributes_hash[:subscriber_count] = obj.statistics.subscriberCount
       attributes_hash[:video_count] = obj.statistics.videoCount

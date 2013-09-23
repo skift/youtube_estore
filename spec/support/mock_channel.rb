@@ -1,6 +1,6 @@
 ActiveRecord::Schema.define do
-    create_table :youtube_estore_channels, force: true do |t|
-        t.integer   :age
+    create_table :youtube_estore_channels do |t|
+        t.datetime   :published_at
         t.string    :description
         t.integer   :subscriber_count
         t.integer   :video_count

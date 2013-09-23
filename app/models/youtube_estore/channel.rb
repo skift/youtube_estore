@@ -5,7 +5,7 @@ module YoutubeEstore
     validates_presence_of :t_id
     validates_uniqueness_of :t_id
 
-    attr_accessible :age, :description, :subscriber_count, :video_count, :username, :view_count, :default_thumbnail, :t_id
+    attr_accessible :published_at, :description, :subscriber_count, :video_count, :username, :view_count, :default_thumbnail, :t_id
 
 
 
