@@ -19,7 +19,7 @@ module YoutubeEstore
       attributes_hash[:is_embeddable] = obj.status.embeddable
 
 
-      return Video.new(attributes_hash)
+      build_from_object(Video, obj, attributes_hash)
     end
   end
 end
