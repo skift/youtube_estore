@@ -44,6 +44,8 @@ module YoutubeEstore
         expect(Channel.most_liked.to_a).to eq [@channel2, @channel1, @channel3]
       end
 
+      
+
 
       it '.most_videos should do it' do      
         expect(Channel.most_videos.to_a).to eq [@channel3, @channel1, @channel2]
@@ -55,6 +57,16 @@ module YoutubeEstore
 
       it '.most_approved should do it' do      
         expect(Channel.most_approved.to_a).to eq [@channel2, @channel1, @channel3]
+      end
+
+      describe 'with_count meta programming' do 
+
+        it 'should return :with_agg' do 
+          arr = Channel.most_liked_with_agg.to_a
+          expect(arr.find{|v| v.t_id == @channel2.t_id }[0]).to eq @channel2.t_id
+          expect(arr.find{|v| v.t_id == @channel2.t_id }[1]).to eq 70
+        end
+
       end
     end
 
@@ -110,9 +122,14 @@ module YoutubeEstore
 
       @channel_1.videos << @video1 << @video3
       @channel_2.videos << @video2
+#Channel.joins(:videos).group("#{Channel.table_name}.t_id").select("SUM(#{Video.table_name}.likes) AS likes_sum").first.likes_sum
+#      binding.pry
 
-      binding.pry
 
+        # self.joins(:videos).  
+        #     group("#{Channel.table_name}.t_id").
+        #     select("SUM(#{Video.table_name}.likes) AS likes_sum").
+        #     order('likes_sum DESC')
     end
 
   end
