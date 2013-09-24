@@ -14,6 +14,50 @@ module YoutubeEstore
       expect(@channel.videos.count).to eq 2
     end
 
+    context 'channel calculations' do
+      before(:each) do 
+        @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 90, favorite_count: 6, view_count: 200)
+        @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 80, favorite_count: 2, view_count: 100)    
+        @video3 = Video.create(t_id: 3, duration_seconds: 10, likes: 30, dislikes: 70, favorite_count: 6, view_count: 200)
+        @video4 = Video.create(t_id: 4, duration_seconds: 20, likes: 40, dislikes: 60, favorite_count: 2, view_count: 100)    
+        @video5 = Video.create(t_id: 5, duration_seconds: 10, likes: 5, dislikes: 95, favorite_count: 6, view_count: 200)
+        @video6 = Video.create(t_id: 6, duration_seconds: 20, likes: 6, dislikes: 94, favorite_count: 2, view_count: 100)    
+        @video7 = Video.create(t_id: 7)
+        @video8 = Video.create(t_id: 8)
+        @video9 = Video.create(t_id: 9)
+        @channel1 = Channel.create(t_id: 1, video_count: 3, view_count: 300)
+        @channel2 = Channel.create(t_id: 2, video_count: 2, view_count: 400)
+        @channel3 = Channel.create(t_id: 3, video_count: 4, view_count: 500)
+
+        @channel1.videos << @video1
+        @channel1.videos << @video2
+        @channel2.videos << @video3
+        @channel2.videos << @video4
+        @channel3.videos << @video5
+        @channel3.videos << @video6
+        @channel1.videos << @video7
+        @channel3.videos << @video8
+        @channel3.videos << @video9
+      end
+
+      it '.most_liked should do it' do      
+        expect(Channel.most_liked.to_a).to eq [@channel2, @channel1, @channel3]
+      end
+
+
+      it '.most_videos should do it' do      
+        expect(Channel.most_videos.to_a).to eq [@channel3, @channel1, @channel2]
+      end
+
+      it '.most_viewed should do it' do      
+        expect(Channel.most_viewed.to_a).to eq [@channel3, @channel2, @channel1]
+      end
+
+      it '.most_approved should do it' do      
+        expect(Channel.most_approved.to_a).to eq [@channel2, @channel1, @channel3]
+      end
+    end
+
     context 't_id' do 
       it 'should be valid with simply a t_id' do
         @channel = YoutubeEstore::Channel.new(t_id: 1)
@@ -44,6 +88,12 @@ module YoutubeEstore
         describe '#longest_videos' do 
           it 'returns n videos by duration' do 
             expect(@channel.longest_videos(2)).to eq [@video2, @video1]
+          end
+        end
+
+        describe '#likes_count_of_videos' do 
+          it 'returns sum of likes_count of videos' do 
+            expect(@channel.likes_count_of_videos).to eq (@video1.likes + @video2.likes)
           end
         end
 
