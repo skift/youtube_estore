@@ -49,5 +49,21 @@ module YoutubeEstore
 
     end
 
+
+    context 'some aggs' do 
+      @video1 = Video.create(t_id: 1, likes: 10, dislikes: 0)
+      @video2 = Video.create(t_id: 2, likes: 20)
+      @video3 = Video.create(t_id: 3, likes: 11)
+
+      @channel_1 = Channel.create(t_id: 1)
+      @channel_2 = Channel.create(t_id: 2)
+
+      @channel_1.videos << @video1 << @video3
+      @channel_2.videos << @video2
+
+      binding.pry
+
+    end
+
   end
 end
