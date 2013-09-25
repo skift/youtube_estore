@@ -61,9 +61,7 @@ module YoutubeEstore
         end
       end
 
-      
-
-      
+       
 
       describe 'with_count meta programming' do 
 
@@ -105,8 +103,6 @@ module YoutubeEstore
 
 
 
-
-
     context 'delegation to videos' do 
        before(:each) do 
           @channel = YoutubeEstore::Channel.create(t_id: 1)
@@ -127,28 +123,6 @@ module YoutubeEstore
           end
         end
 
-    end
-
-
-    context 'some aggs' do 
-
-      # @video1 = Video.create(t_id: 1, likes: 10, dislikes: 0)
-      # @video2 = Video.create(t_id: 2, likes: 20)
-      # @video3 = Video.create(t_id: 3, likes: 11)
-
-      # @channel_1 = Channel.create(t_id: 1)
-      # @channel_2 = Channel.create(t_id: 2)
-
-      # @channel_1.videos << @video1 << @video3
-      # @channel_2.videos << @video2
-#Channel.joins(:videos).group("#{Channel.table_name}.t_id").select("SUM(#{Video.table_name}.likes) AS likes_sum").first.likes_sum
-#      binding.pry
-
-
-        # self.joins(:videos).  
-        #     group("#{Channel.table_name}.t_id").
-        #     select("SUM(#{Video.table_name}.likes) AS likes_sum").
-        #     order('likes_sum DESC')
     end
 
   end
