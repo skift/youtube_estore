@@ -1,5 +1,7 @@
 module YoutubeEstore
   class Channel < ActiveRecord::Base
+        include YoutubeConventions
+
     # attr_accessible :title, :body
     has_many :videos, primary_key: :t_id 
     validates_presence_of :t_id
@@ -30,31 +32,31 @@ module YoutubeEstore
 
 
     def self.most_liked
-      arr = self.all.sort_by { |c| -c.likes_count_of_videos }
-      add_sorted_value(arr, 'likes_count_of_videos')
+      proc = Proc.new{|c| c.likes_count_of_videos}
+      add_sorted_value_and_sort(proc)
     end
     
     def self.most_approved
-      self.all.sort_by { |c| -(c.likes_count_of_videos.to_f / (c.likes_count_of_videos + c.dislikes_count_of_videos))}
+      proc = Proc.new{|c| (c.likes_count_of_videos.to_f / (c.likes_count_of_videos + c.dislikes_count_of_videos)) }
+      add_sorted_value_and_sort(proc)
     end
 
     def self.most_viewed
-      self.order("view_count DESC")
+      add_sorted_value_and_sort('view_count')
     end
 
     def self.most_videos
-      arr = self.order("video_count DESC")
-      add_sorted_value(arr, 'video_count')
+      add_sorted_value_and_sort('video_count')
     end
 
 
 
-    def self.add_sorted_value(arr, column)
-      arr.each do |channel|  
-        channel.instance_eval "def sorted_value; #{channel.send(column)}; end"
-      end
-      arr
-    end
+
+
+
+
+
+
    
   end
 end
