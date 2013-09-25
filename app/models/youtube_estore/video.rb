@@ -24,6 +24,7 @@ module YoutubeEstore
       self.sum(:likes).to_f / (self.sum(:likes) + self.sum(:dislikes))
     end
 
+
     def self.likes_count
       self.sum(:likes)
     end
@@ -37,31 +38,30 @@ module YoutubeEstore
     end
 
 
+
     def self.longest(lim=1) # longest_videos
-      self.order("duration_seconds DESC").limit(lim)
+      add_sorted_value_and_sort('duration_seconds', {limit: lim})
     end
 
     def self.most_liked(lim=10)
-      self.order("likes DESC").limit(lim)
+      add_sorted_value_and_sort('likes', {limit: lim})
     end
 
     def self.most_disliked(lim=10)
-      self.order("dislikes DESC").limit(lim)
+      add_sorted_value_and_sort('dislikes', {limit: lim})
     end
 
     def self.most_viewed(lim=10)
-      self.order("view_count DESC").limit(lim)
+      add_sorted_value_and_sort('view_count', {limit: lim})
     end
 
-
     def self.highest_rated(lim=10)
-      self.order("approval_rating DESC").limit(lim)
+      add_sorted_value_and_sort('approval_rating', {limit: lim})
     end
 
     def self.lowest_rated(lim=10)
-      self.order("approval_rating ASC").limit(lim)
+      add_sorted_value_and_sort('approval_rating', {order: 'ASC', limit: lim})
     end
-
 
 
 

@@ -1,5 +1,7 @@
 module YoutubeEstore
   class Channel < ActiveRecord::Base
+        include YoutubeConventions
+
     # attr_accessible :title, :body
     has_many :videos, primary_key: :t_id 
     validates_presence_of :t_id
@@ -9,6 +11,7 @@ module YoutubeEstore
 
     DELEGATING_REGEX = /^\w+?(?=(?:_of)?_videos)/
 
+    AGG_REGEX = /^\w+?(?=_with_agg)/
     def method_missing(meth, *args, &block)
       if foomatch = meth.to_s.match(DELEGATING_REGEX)
         foo = foomatch.to_s
@@ -18,7 +21,6 @@ module YoutubeEstore
       end
     end
 
-
     def respond_to?(meth, x=false)
       if meth.match(DELEGATING_REGEX)
         true
@@ -27,24 +29,34 @@ module YoutubeEstore
       end
     end
 
+
+
     def self.most_liked
-      self.all.sort_by { |c| -c.likes_count_of_videos }
-      
-
-
+      proc = Proc.new{|c| c.likes_count_of_videos}
+      add_sorted_value_and_sort(proc)
     end
-
-    def self.most_videos
-      self.order("video_count DESC")
+    
+    def self.most_approved
+      proc = Proc.new{|c| (c.likes_count_of_videos.to_f / (c.likes_count_of_videos + c.dislikes_count_of_videos)) }
+      add_sorted_value_and_sort(proc)
     end
 
     def self.most_viewed
-      self.order("view_count DESC")
+      add_sorted_value_and_sort('view_count')
     end
 
-    def self.most_approved
-      self.all.sort_by { |c| -(c.likes_count_of_videos.to_f / (c.likes_count_of_videos + c.dislikes_count_of_videos))}
+    def self.most_videos
+      add_sorted_value_and_sort('video_count')
     end
 
+
+
+
+
+
+
+
+
+   
   end
 end
