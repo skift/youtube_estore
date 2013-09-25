@@ -63,14 +63,37 @@ module YoutubeEstore
 
    
 
-      context 'within :past scope' do 
-        it 'should have :highest_rated in :past_month' do 
-          @video1 = Video.create(t_id: 1, likes: 20, dislikes: 1, published_at: 1.year.ago )
-          @video2 = Video.create(t_id: 2, likes: 1, dislikes: 20, published_at: 1.week.ago )
+      describe 'time based aggregations' do 
 
-          expect(Video.highest_rated.past_month.to_a).to eq [@video2]
+        context 'within :past scope' do 
+          it 'should have :highest_rated in :past_month' do 
+            @video1 = Video.create(t_id: 1, likes: 20, dislikes: 1, published_at: 1.year.ago )
+            @video2 = Video.create(t_id: 2, likes: 1, dislikes: 20, published_at: 1.week.ago )
+
+            expect(Video.highest_rated.past_month.to_a).to eq [@video2]
+          end
         end
+
+
+
+        describe '#published_count_by_month' do 
+          it 'should return a hash count' do 
+            Video.create(t_id: 1, published_at: Time.new(2008, 1))
+            Video.create(t_id: 2, published_at: Time.new(2008, 1))
+            Video.create(t_id: 3, published_at: Time.new(2008, 2))
+
+            expect(Video.count_by_month).to eq(
+              {
+                Time.new(2008,1) => 2,
+                Time.new(2008,2) => 1 
+              }
+            )
+          end
+        end
+
       end
+
+      
 
      context 'instance methods' do 
       

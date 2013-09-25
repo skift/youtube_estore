@@ -40,24 +40,30 @@ module YoutubeEstore
         @channel3.videos << @video9
       end
 
-      it '.most_liked should do it' do      
-        expect(Channel.most_liked.to_a).to eq [@channel2, @channel1, @channel3]
+      context 'aggregations based on :videos relation' do 
+        it '.most_liked should do it' do      
+          expect(Channel.most_liked.to_a).to eq [@channel2, @channel1, @channel3]
+        end
+
+        it '.most_videos should do it' do      
+          expect(Channel.most_videos.to_a).to eq [@channel3, @channel1, @channel2]
+        end
+
+        it '.most_approved should do it' do      
+          expect(Channel.most_approved.to_a).to eq [@channel2, @channel1, @channel3]
+        end
+      end
+
+
+      context 'aggregations based on Channel attributes' do 
+        it '.most_viewed should do it' do      
+          expect(Channel.most_viewed.to_a).to eq [@channel3, @channel2, @channel1]
+        end
       end
 
       
 
-
-      it '.most_videos should do it' do      
-        expect(Channel.most_videos.to_a).to eq [@channel3, @channel1, @channel2]
-      end
-
-      it '.most_viewed should do it' do      
-        expect(Channel.most_viewed.to_a).to eq [@channel3, @channel2, @channel1]
-      end
-
-      it '.most_approved should do it' do      
-        expect(Channel.most_approved.to_a).to eq [@channel2, @channel1, @channel3]
-      end
+      
 
       describe 'with_count meta programming' do 
 
@@ -68,6 +74,9 @@ module YoutubeEstore
         end
 
       end
+
+
+
     end
 
     context 't_id' do 
