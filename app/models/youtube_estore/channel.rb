@@ -9,6 +9,7 @@ module YoutubeEstore
 
     DELEGATING_REGEX = /^\w+?(?=(?:_of)?_videos)/
 
+    AGG_REGEX = /^\w+?(?=_with_agg)/
     def method_missing(meth, *args, &block)
       if foomatch = meth.to_s.match(DELEGATING_REGEX)
         foo = foomatch.to_s
@@ -18,7 +19,6 @@ module YoutubeEstore
       end
     end
 
-
     def respond_to?(meth, x=false)
       if meth.match(DELEGATING_REGEX)
         true
@@ -27,24 +27,34 @@ module YoutubeEstore
       end
     end
 
+
+
     def self.most_liked
-      self.all.sort_by { |c| -c.likes_count_of_videos }
-      
-
-
+      arr = self.all.sort_by { |c| -c.likes_count_of_videos }
+      add_sorted_value(arr, 'likes_count_of_videos')
     end
-
-    def self.most_videos
-      self.order("video_count DESC")
+    
+    def self.most_approved
+      self.all.sort_by { |c| -(c.likes_count_of_videos.to_f / (c.likes_count_of_videos + c.dislikes_count_of_videos))}
     end
 
     def self.most_viewed
       self.order("view_count DESC")
     end
 
-    def self.most_approved
-      self.all.sort_by { |c| -(c.likes_count_of_videos.to_f / (c.likes_count_of_videos + c.dislikes_count_of_videos))}
+    def self.most_videos
+      arr = self.order("video_count DESC")
+      add_sorted_value(arr, 'video_count')
     end
 
+
+
+    def self.add_sorted_value(arr, column)
+      arr.each do |channel|  
+        channel.instance_eval "def sorted_value; #{channel.send(column)}; end"
+      end
+      arr
+    end
+   
   end
 end

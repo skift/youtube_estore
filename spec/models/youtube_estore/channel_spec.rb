@@ -59,12 +59,21 @@ module YoutubeEstore
         expect(Channel.most_approved.to_a).to eq [@channel2, @channel1, @channel3]
       end
 
-      describe 'with_count meta programming' do 
+      describe 'with_agg  programming' do 
 
-        it 'should return :with_agg' do 
-          arr = Channel.most_liked_with_agg.to_a
-          expect(arr.find{|v| v.t_id == @channel2.t_id }[0]).to eq @channel2.t_id
-          expect(arr.find{|v| v.t_id == @channel2.t_id }[1]).to eq 70
+        it ':most_liked should have :sorted_value set' do 
+          arr = Channel.most_liked
+          channel = arr.find{|a| a.t_id == @channel2.t_id.to_s }
+          expect(channel.t_id).to eq @channel2.t_id.to_s
+          expect(channel.sorted_value).to eq 70
+        end
+
+        it ':most_videos should have :sorted_value set' do 
+          arr = Channel.most_videos
+          channel = arr.first
+
+          expect(channel).to eq @channel3
+          expect(channel.sorted_value).to eq @channel3.video_count
         end
 
       end
@@ -113,15 +122,16 @@ module YoutubeEstore
 
 
     context 'some aggs' do 
-      @video1 = Video.create(t_id: 1, likes: 10, dislikes: 0)
-      @video2 = Video.create(t_id: 2, likes: 20)
-      @video3 = Video.create(t_id: 3, likes: 11)
 
-      @channel_1 = Channel.create(t_id: 1)
-      @channel_2 = Channel.create(t_id: 2)
+      # @video1 = Video.create(t_id: 1, likes: 10, dislikes: 0)
+      # @video2 = Video.create(t_id: 2, likes: 20)
+      # @video3 = Video.create(t_id: 3, likes: 11)
 
-      @channel_1.videos << @video1 << @video3
-      @channel_2.videos << @video2
+      # @channel_1 = Channel.create(t_id: 1)
+      # @channel_2 = Channel.create(t_id: 2)
+
+      # @channel_1.videos << @video1 << @video3
+      # @channel_2.videos << @video2
 #Channel.joins(:videos).group("#{Channel.table_name}.t_id").select("SUM(#{Video.table_name}.likes) AS likes_sum").first.likes_sum
 #      binding.pry
 
