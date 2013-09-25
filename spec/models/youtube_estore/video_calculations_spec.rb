@@ -59,6 +59,14 @@ module YoutubeEstore
         it 'lowest_rated(lim=10)' do
           expect(Video.lowest_rated.first).to eq @video1
         end
+
+        it 'limit in .longest works correctly' do
+          (3..13).each do |num|
+            Video.create(t_id: num, duration_seconds: (num))
+          end
+          expect(Video.longest.count).to eq 1
+          expect(Video.longest(lim=8).count).to eq 8
+        end
       end
 
    

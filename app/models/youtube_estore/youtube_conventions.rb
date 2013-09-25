@@ -9,32 +9,26 @@ module YoutubeEstore
 
 
     module ClassMethods
+
       def add_sorted_value_and_sort(foo, opts={})
-        arr = sort_by_sorted_value(foo, opts)
-        add_sorted_value(arr, foo)
-      end
 
-      def sort_by_sorted_value(foo, opts)
         if foo.class == Proc 
-          self.all.sort_by { |c| -foo.call(c) }
-        else
-          order_val = opts[:order] || 'DESC'
-          self.order("#{foo} #{order_val}")
-        end
-      end
+          self.all.sort_by do |channel| 
+            val = foo.call(channel) 
+            channel.instance_eval "def sorted_value; #{val}; end"
 
-      def add_sorted_value(arr, foo)
-        arr.each do |channel|  
-          if foo.class == Proc
-            x = foo.call(channel)
-            channel.instance_eval "def sorted_value; #{x}; end"
-          else
-            channel.instance_eval "def sorted_value; #{channel.send(foo)}; end"
+            -val            
           end
+        elsif foo.class == String || foo.class == Symbol
+          order_val = opts[:order] || 'DESC'
+          self.order("#{foo} #{order_val}").
+                select("#{self.table_name}.*, #{self.table_name}.#{foo} AS sorted_value").
+                limit(opts[:limit])
+        else          
+          raise ArgumentError, "#{foo} needs to be a String, Symbol, or Proc"        
         end
-
-        arr
       end
+
     end
 
 
