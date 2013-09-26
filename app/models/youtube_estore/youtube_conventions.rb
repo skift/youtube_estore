@@ -35,6 +35,7 @@ module YoutubeEstore
 
     included do 
       validates_presence_of :t_id
+      validates_uniqueness_of :t_id
     end
 
 

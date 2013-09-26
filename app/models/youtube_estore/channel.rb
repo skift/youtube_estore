@@ -3,9 +3,7 @@ module YoutubeEstore
         include YoutubeConventions
 
     # attr_accessible :title, :body
-    has_many :videos, primary_key: :t_id 
-    validates_presence_of :t_id
-    validates_uniqueness_of :t_id
+    has_many :videos, primary_key: :t_id
 
     attr_accessible :published_at, :description, :subscriber_count, :video_count, :username, :view_count, :default_thumbnail, :t_id
 
