@@ -10,6 +10,10 @@ module YoutubeEstore
     attr_accessible :duration_seconds, :category_id, :description, :title, :published_at, :view_count, :favorite_count, :is_embeddable, :likes, :dislikes, :approval_rating, :t_id, :channel_id, :username, :default_thumbnail, :category_id, :comment_count
 
 
+    def source_link
+      "https://www.youtube.com/videos/#{t_id}"
+    end
+
 ################### Class Methods #######################
 
    # returns integer

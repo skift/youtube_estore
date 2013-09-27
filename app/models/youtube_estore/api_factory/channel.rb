@@ -9,10 +9,9 @@ module YoutubeEstore
       attributes_hash[:username] = obj.snippet.title
       attributes_hash[:view_count] = obj.statistics.viewCount
       attributes_hash[:default_thumbnail] = obj.snippet.thumbnails[:default][:url]
-      attributes_hash[:t_id] = obj.id
+      attributes_hash[:t_id] = obj[:id]
 
       build_from_object(Channel, obj, attributes_hash)
     end
   end
 end
-

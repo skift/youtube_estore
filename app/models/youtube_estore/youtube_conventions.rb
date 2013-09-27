@@ -24,7 +24,7 @@ module YoutubeEstore
           self.order("#{foo} #{order_val}").
                 select("#{self.table_name}.*, #{self.table_name}.#{foo} AS sorted_value").
                 limit(opts[:limit])
-        else          
+        else  
           raise ArgumentError, "#{foo} needs to be a String, Symbol, or Proc"        
         end
       end

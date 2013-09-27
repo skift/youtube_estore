@@ -9,7 +9,6 @@ module YoutubeEstore
 
     DELEGATING_REGEX = /^\w+?(?=(?:_of)?_videos)/
 
-    AGG_REGEX = /^\w+?(?=_with_agg)/
     def method_missing(meth, *args, &block)
       if foomatch = meth.to_s.match(DELEGATING_REGEX)
         foo = foomatch.to_s

@@ -2,7 +2,7 @@ module YoutubeEstore
   module ApiFactory
     def self.Video(obj)
       attributes_hash = {}
-      attributes_hash[:t_id] = obj.id
+      attributes_hash[:t_id] = obj[:id]
       attributes_hash[:published_at] = obj.snippet.publishedAt
       attributes_hash[:description] = obj.snippet.description
       attributes_hash[:username] = obj.snippet.title

@@ -58,6 +58,8 @@ module YoutubeEstore
       describe 'attribute transformation' do 
         before(:each) do 
           @channel = ApiFactory.Channel(@channel_object)
+          @channel.save
+          @channel = Channel.first
         end
 
         context 'descriptive attributes' do
@@ -66,7 +68,7 @@ module YoutubeEstore
           end
 
           it 'should set :description to obj.snippet.description' do 
-            expect(@channel.description).to eq @channel_object.snippet.description
+            expect(@channel.description).to eq @channel_object.snippet.description[0..254]
           end
 
           it 'should set :username to obj.snippet.title' do 

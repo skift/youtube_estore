@@ -89,7 +89,7 @@ module YoutubeEstore
             Video.create(t_id: 1, published_at: Time.new(2008, 1))
             Video.create(t_id: 2, published_at: Time.new(2008, 1))
             Video.create(t_id: 3, published_at: Time.new(2008, 2))
-
+pending "laaa"
             expect(Video.count_by_month).to eq(
               {
                 Time.new(2008,1) => 2,
