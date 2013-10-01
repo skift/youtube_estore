@@ -11,7 +11,7 @@ module YoutubeEstore
       attributes_hash[:default_thumbnail] = obj.snippet.thumbnails[:default][:url]
       attributes_hash[:t_id] = obj[:id]
 
-      build_from_object(Channel, obj, attributes_hash)
+      EstoreConventions::Builder.build_from_object(Channel, obj, attributes_hash)
     end
   end
 end

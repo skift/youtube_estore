@@ -18,8 +18,7 @@ module YoutubeEstore
       attributes_hash[:duration_seconds] = Video.convert_iso8601_to_seconds(obj.contentDetails.duration)
       attributes_hash[:is_embeddable] = obj.status.embeddable
 
-
-      build_from_object(Video, obj, attributes_hash)
+      EstoreConventions::Builder.build_from_object(Video, obj, attributes_hash)
     end
   end
 end

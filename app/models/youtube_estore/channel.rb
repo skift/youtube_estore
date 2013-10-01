@@ -1,6 +1,6 @@
 module YoutubeEstore
   class Channel < ActiveRecord::Base
-        include YoutubeConventions
+    include EstoreConventions
 
     # attr_accessible :title, :body
     has_many :videos, primary_key: :t_id

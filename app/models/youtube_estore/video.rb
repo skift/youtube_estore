@@ -1,6 +1,6 @@
 module YoutubeEstore
   class Video < ActiveRecord::Base
-    include YoutubeConventions
+    include EstoreConventions
     attr_datetime :published_at
 
     before_save :calculate_approval_rating
