@@ -82,18 +82,17 @@ module YoutubeEstore
           end
         end
 
-
-
         describe '#published_count_by_month' do 
+
           it 'should return a hash count' do 
             Video.create(t_id: 1, published_at: Time.new(2008, 1))
             Video.create(t_id: 2, published_at: Time.new(2008, 1))
             Video.create(t_id: 3, published_at: Time.new(2008, 2))
-pending "laaa"
+
             expect(Video.count_by_month).to eq(
               {
-                Time.new(2008,1) => 2,
-                Time.new(2008,2) => 1 
+                Time.new(2008,1,1,0,0,0,0) => 2,
+                Time.new(2008,2,1,0,0,0,0) => 1 
               }
             )
           end
@@ -104,7 +103,6 @@ pending "laaa"
       
 
      context 'instance methods' do 
-      
         before(:each) do 
           @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200)
           @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100)    

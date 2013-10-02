@@ -38,7 +38,7 @@ GEM
       multi_json (~> 1.0)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
-    aggtive_record (0.1.2)
+    aggtive_record (0.1.5)
       activesupport (~> 3.2.14)
       groupdate
     arel (3.0.2)
