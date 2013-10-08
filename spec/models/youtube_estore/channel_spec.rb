@@ -102,6 +102,34 @@ module YoutubeEstore
     end
 
 
+    context 'past month video calculations' do 
+       before(:each) do 
+          @channel1 = YoutubeEstore::Channel.create(t_id: 1)
+          @channel2 = YoutubeEstore::Channel.create(t_id: 2)
+          @channel1.videos << @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200, published_at: (2.days.ago))
+          @channel2.videos << @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100, published_at: (100.days.ago))    
+        end
+
+        it '.most_liked_past_month should do it' do      
+          expect(Channel.most_liked_past_month).to eq [@channel1, @channel2]
+        end
+
+        it '.most_approved_past_month should do it' do 
+          expect(Channel.most_approved_past_month).to eq [@channel1, @channel2]
+        end
+
+        it '.most_viewed_past_month should do it' do      
+          expect(Channel.most_viewed_past_month).to eq [@channel1, @channel2]
+        end
+
+        it '.most_videos_past_month should do it' do      
+          expect(Channel.most_videos_past_month).to eq [@channel1, @channel2]
+        end
+
+      end
+
+
+
 
     context 'delegation to videos' do 
        before(:each) do 

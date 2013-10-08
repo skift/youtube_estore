@@ -27,17 +27,41 @@ module YoutubeEstore
     end
 
 
+
     def self.likes_count
       self.sum(:likes)
+    end
+
+    def self.likes_count_past_month
+      self.past_month.sum(:likes)
     end
 
     def self.dislikes_count
       self.sum(:dislikes)
     end
 
+    def self.dislikes_count_past_month
+      self.past_month.sum(:dislikes)
+    end
+
     def self.favorites_count
       self.sum(:favorite_count)
     end
+
+    def self.favorites_count_past_month
+      self.past_month.sum(:favorite_count)
+    end
+
+    def self.views_count
+      self.sum(:view_count)
+    end
+
+    def self.views_count_past_month
+      self.past_month.sum(:view_count)
+    end
+
+
+
 
 
 
@@ -49,20 +73,40 @@ module YoutubeEstore
       add_sorted_value_and_sort('likes', {limit: lim})
     end
 
+    def self.most_liked_past_month(lim=10)
+      self.past_month.most_liked(lim)
+    end
+
     def self.most_disliked(lim=10)
       add_sorted_value_and_sort('dislikes', {limit: lim})
+    end
+
+    def self.most_disliked_past_month(lim=10)
+      self.past_month.most_disliked(lim)
     end
 
     def self.most_viewed(lim=10)
       add_sorted_value_and_sort('view_count', {limit: lim})
     end
 
+    def self.most_viewed_past_month(lim=10)
+      self.past_month.most_viewed(lim)
+    end
+
     def self.highest_rated(lim=10)
       add_sorted_value_and_sort('approval_rating', {limit: lim})
     end
 
+    def self.highest_rated_past_month(lim=10)
+      self.past_month.highest_rated(lim)
+    end
+
     def self.lowest_rated(lim=10)
       add_sorted_value_and_sort('approval_rating', {order: 'ASC', limit: lim})
+    end
+
+    def self.lowest_rated_past_month(lim=10)
+      self.past_month.lowest_rated(lim)
     end
 
 

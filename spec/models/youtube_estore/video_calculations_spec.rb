@@ -8,8 +8,12 @@ module YoutubeEstore
       context 'class methods' do 
       
         before(:each) do 
-          @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, favorite_count: 6, view_count: 200)
-          @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, favorite_count: 2, view_count: 100)    
+          @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10,
+                                  dislikes: 40, favorite_count: 6, view_count: 200,
+                                  published_at: (60.days.ago))
+          @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20,
+                                  dislikes: 20, favorite_count: 2, view_count: 100,
+                                  published_at: (2.days.ago))    
         end
 
         it '.average_duration should calculate the average duration' do
@@ -20,12 +24,32 @@ module YoutubeEstore
           expect(Video.likes_count).to eq (@video1.likes + @video2.likes)
         end
 
+        it '.likes_count_past_month should calculate the total number of likes for all videos in the past month' do
+          expect(Video.likes_count_past_month).to eq @video2.likes
+        end
+
         it '.dislikes_count should calculate the total number of likes for all videos' do
           expect(Video.dislikes_count).to eq (@video1.dislikes + @video2.dislikes)
         end
 
+        it '.dislikes_count_past_month should calculate the total number of likes for all videos in the past month' do
+          expect(Video.dislikes_count_past_month).to eq @video2.dislikes
+        end
+
         it '.favorites_count should calculate the total number of likes for all videos' do
           expect(Video.favorites_count).to eq (@video1.favorite_count + @video2.favorite_count)
+        end
+
+        it '.favorites_count_past_month should calculate the total number of likes for all videos in the past month' do
+          expect(Video.favorites_count_past_month).to eq @video2.favorite_count
+        end
+
+        it '.views_count should calculate the total number of likes for all videos' do
+          expect(Video.views_count).to eq (@video1.view_count + @video2.view_count)
+        end
+
+        it '.views_count_past_month should calculate the total number of likes for all videos in the past month' do
+          expect(Video.views_count_past_month).to eq @video2.view_count
         end
 
         it '.longest should return the longest video by :duration' do
@@ -36,14 +60,26 @@ module YoutubeEstore
           expect(Video.most_liked.first).to eq @video2
         end
       
+        it '.most_liked_past_month should return 10 videos sorted by :likes in the past month' do
+          expect(Video.most_liked_past_month.first).to eq @video2
+        end
+
         it '.most_disliked should return 10 videos sorted by :dislikes' do
           expect(Video.most_disliked.first).to eq @video1
         end
       
+        it '.most_disliked_past_month should return 10 videos sorted by :dislikes in the past month' do
+          expect(Video.most_disliked_past_month.first).to eq @video2
+        end
+
         it '.most_viewed should return 10 videos sorted by :most_viewed' do
           expect(Video.most_viewed.first).to eq @video1
         end
       
+        it '.most_viewed_past_month should return 10 videos sorted by :most_viewed in the past month' do
+          expect(Video.most_viewed_past_month.first).to eq @video2
+        end
+
         it '.overall_approval_rating should calculate the average rating' do
           likes = Video.sum(:likes)
           dislikes = Video.sum(:dislikes)
@@ -56,8 +92,16 @@ module YoutubeEstore
           expect(Video.highest_rated.first).to eq @video2
         end
       
+        it 'highest_rated_past_month(lim=10)' do
+          expect(Video.highest_rated_past_month.first).to eq @video2
+        end
+
         it 'lowest_rated(lim=10)' do
           expect(Video.lowest_rated.first).to eq @video1
+        end
+
+        it 'lowest_rated_past_month(lim=10)' do
+          expect(Video.lowest_rated_past_month.first).to eq @video2
         end
 
         it 'limit in .longest works correctly' do
