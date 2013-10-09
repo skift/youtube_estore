@@ -21,6 +21,5 @@ class CreateYoutubeEstoreVideos < ActiveRecord::Migration
       t.datetime "rails_updated_at"
 
     end
-
   end
 end
