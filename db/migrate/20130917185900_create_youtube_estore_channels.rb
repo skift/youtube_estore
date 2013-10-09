@@ -1,7 +1,7 @@
 class CreateYoutubeEstoreChannels < ActiveRecord::Migration
   def change
     create_table :youtube_estore_channels, force: true do |t|
-        t.integer   :age
+        t.datetime  :published_at
         t.string    :description
         t.integer   :subscriber_count
         t.integer   :video_count
@@ -9,9 +9,8 @@ class CreateYoutubeEstoreChannels < ActiveRecord::Migration
         t.integer   :view_count
         t.string    :default_thumbnail
         t.string    :t_id
-
-        t.timestamp :rails_created_at
-        t.timestamp :rails_updated_at
+        t.datetime "rails_created_at"
+        t.datetime "rails_updated_at"
     end
   end
 end
