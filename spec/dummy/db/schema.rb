@@ -11,17 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130917185900) do
+ActiveRecord::Schema.define(:version => 20131009211203) do
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
   create_table "youtube_estore_channels", :force => true do |t|
-    t.datetime  :published_at
-    t.string    :description
-    t.integer   :subscriber_count
-    t.integer   :video_count
-    t.string    :username
-    t.integer   :view_count
-    t.string    :default_thumbnail
-    t.string    :t_id
+    t.datetime "published_at"
+    t.string   "description"
+    t.integer  "subscriber_count"
+    t.integer  "video_count"
+    t.string   "username"
+    t.integer  "view_count"
+    t.string   "default_thumbnail"
+    t.string   "t_id"
     t.datetime "rails_created_at"
     t.datetime "rails_updated_at"
   end
@@ -34,12 +45,12 @@ ActiveRecord::Schema.define(:version => 20130917185900) do
     t.string   "title"
     t.datetime "published_at"
     t.integer  "view_count"
-    t.integer  "favorite_count",   :default => 0
+    t.integer  "favorite_count",    :default => 0
     t.integer  "comment_count"
     t.boolean  "is_embeddable"
-    t.integer  "likes",            :default => 0
-    t.integer  "dislikes",         :default => 0
-    t.float    "approval_rating",  :default => 0.0
+    t.integer  "likes",             :default => 0
+    t.integer  "dislikes",          :default => 0
+    t.float    "approval_rating",   :default => 0.0
     t.string   "t_id"
     t.string   "channel_id"
     t.string   "default_thumbnail"

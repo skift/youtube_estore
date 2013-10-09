@@ -153,5 +153,87 @@ module YoutubeEstore
 
     end
 
+
+
+
+    context 'channel version convienece methods' do
+      before(:each) do
+        @channel = Channel.create t_id: '1'
+        50.times do |n|
+          Timecop.travel(n.days.ago)
+          @channel.subscriber_count = n
+          @channel.video_count = n*2
+          @channel.view_count = n*10
+          @channel.save
+          Timecop.return
+        end
+      end
+
+
+      it '.subscriber_count_past_30_days', :versioning => true do
+        hsh = {}
+        30.times do |n|
+          hsh[n.days.ago.strftime('%Y-%m-%d')] = n
+        end
+
+        expect(@channel.subscriber_count_past_30_days).to eq hsh
+      end
+
+      it '.subscriber_count_past_14_days', :versioning => true do
+        hsh = {}
+        14.times do |n|
+          hsh[n.days.ago.strftime('%Y-%m-%d')] = n
+        end
+
+        expect(@channel.subscriber_count_past_14_days).to eq hsh
+      end
+
+
+
+
+      it '.video_count_past_30_days', :versioning => true do
+        hsh = {}
+        30.times do |n|
+          hsh[n.days.ago.strftime('%Y-%m-%d')] = n*2
+        end
+
+        expect(@channel.video_count_past_30_days).to eq hsh
+      end
+
+      it '.video_count_past_14_days', :versioning => true do
+        hsh = {}
+        14.times do |n|
+          hsh[n.days.ago.strftime('%Y-%m-%d')] = n*2
+        end
+
+        expect(@channel.video_count_past_14_days).to eq hsh
+      end
+
+
+
+
+      it '.view_count_past_30_days', :versioning => true do
+        hsh = {}
+        30.times do |n|
+          hsh[n.days.ago.strftime('%Y-%m-%d')] = n*10
+        end
+
+        expect(@channel.view_count_past_30_days).to eq hsh
+      end
+
+      it '.view_count_past_14_days', :versioning => true do
+        hsh = {}
+        14.times do |n|
+          hsh[n.days.ago.strftime('%Y-%m-%d')] = n*10
+        end
+
+        expect(@channel.view_count_past_14_days).to eq hsh
+      end
+
+
+    end
+
+
+
   end
 end

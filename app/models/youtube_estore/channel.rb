@@ -4,7 +4,7 @@ module YoutubeEstore
     include EstoreConventions
 
     attr_datetime :published_at
-
+    has_paper_trail
     # attr_accessible :title, :body
     has_many :videos, primary_key: :t_id
 
@@ -76,6 +76,35 @@ module YoutubeEstore
     end
 
 
+
+
+    def subscriber_count_past_30_days
+      self.archived_attribute('subscriber_count', (30.days))
+    end
+
+    def subscriber_count_past_14_days
+      self.archived_attribute('subscriber_count', (14.days))
+    end
+
+
+
+    def video_count_past_30_days
+      self.archived_attribute('video_count', (30.days))
+    end
+
+    def video_count_past_14_days
+      self.archived_attribute('video_count', (14.days))
+    end
+
+
+
+    def view_count_past_30_days
+      self.archived_attribute('view_count', (30.days))
+    end
+
+    def view_count_past_14_days
+      self.archived_attribute('view_count', (14.days))
+    end
 
 
 
