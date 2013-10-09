@@ -3,6 +3,7 @@ PATH
   specs:
     youtube_estore (0.0.1)
       aggtive_record
+      estore_conventions
       hashie
       rails (~> 3.2.14)
 
@@ -65,7 +66,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25)
-    multi_json (1.8.0)
+    multi_json (1.8.1)
     mysql2 (0.3.13)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -121,14 +122,13 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.37)
+    tzinfo (0.3.38)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   database_cleaner (= 1.0.1)
-  estore_conventions
   jquery-rails
   mysql2
   pry-rails
