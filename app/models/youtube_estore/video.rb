@@ -1,3 +1,4 @@
+require 'estore_conventions'
 module YoutubeEstore
   class Video < ActiveRecord::Base
     include EstoreConventions
