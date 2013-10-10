@@ -5,7 +5,7 @@ module YoutubeEstore
 
     attr_datetime :published_at
     has_paper_trail
-    # attr_accessible :title, :body
+
     has_many :videos, primary_key: :t_id
 
     attr_accessible :published_at, :description, :subscriber_count, :video_count, :username, :view_count, :default_thumbnail, :t_id
@@ -107,6 +107,55 @@ module YoutubeEstore
     end
 
 
+
+
+
+def sub_score_master_calculation
+  (0.25 * self.subscriber_count_calculation) +
+  (0.50 * self.view_count_calculation) +
+  (0.25 * self.overall_approval_rating_of_videos_calculation)
+end
+
+
+  def subscriber_count_calculation
+    input = self.subscriber_count
+
+    case input
+      when (0..99)
+        0
+      when (100..499)
+        25
+      when (500..999)
+        50
+      when (1000..9999)
+        75
+      when input > 10000
+        100
+    end
+  end
+
+
+  def view_count_calculation
+    input = self.view_count
+
+    case input
+      when (0..99)
+        0
+      when (100..999)
+        25
+      when (1000..999999)
+        50
+      when (1000000..9999999)
+        75
+      when input > 10000000
+        100
+    end
+  end
+
+
+  def overall_approval_rating_of_videos_calculation
+    self.overall_approval_rating_of_videos * 100
+  end
 
 
 

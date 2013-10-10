@@ -233,7 +233,26 @@ module YoutubeEstore
 
     end
 
+    context 'iq score' do
+      before(:each) do
+        @channel = Channel.create(t_id: '1', view_count: 100, subscriber_count: 9000)
+        @video = Video.create(t_id: 1, channel_id: 1, likes: 1, dislikes: 0)
 
+      end
+
+      it 'view_count_calculation' do
+        expect(@channel.view_count_calculation).to eq 25
+      end
+
+      it 'subscriber_count_calculation' do
+        expect(@channel.subscriber_count_calculation).to eq 75
+      end
+
+      it 'overall_approval_rating_of_videos_calculation' do
+        expect(@channel.overall_approval_rating_of_videos_calculation).to eq 100
+      end
+
+    end
 
   end
 end

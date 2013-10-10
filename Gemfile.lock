@@ -132,6 +132,7 @@ PLATFORMS
 
 DEPENDENCIES
   database_cleaner (= 1.0.1)
+  estore_conventions
   jquery-rails
   mysql2
   paper_trail (>= 3.0.0.beta1)
