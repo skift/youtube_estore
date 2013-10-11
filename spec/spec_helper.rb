@@ -7,6 +7,7 @@ include YoutubeEstore
 require 'rspec/rails'
 require 'hashie'
 require 'pry'
+require 'timecop'
 
 require 'database_cleaner'
 DatabaseCleaner.strategy = :truncation
