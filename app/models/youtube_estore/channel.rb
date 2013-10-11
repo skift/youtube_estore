@@ -75,13 +75,6 @@ module YoutubeEstore
       add_sorted_value_and_sort('video_count')
     end
 
-
-
-
-
-
-
-
    
   end
 end
