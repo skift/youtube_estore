@@ -7,9 +7,6 @@ gemspec
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
-gem "estore_conventions"
-gem 'paper_trail', '>= 3.0.0.beta1'
-
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

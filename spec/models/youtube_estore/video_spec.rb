@@ -7,6 +7,8 @@ module YoutubeEstore
       @video = Video.create(t_id: 1)
       @channel = Channel.create(t_id: 2)
       @video.channel = @channel
+
+      binding.pry
       expect(@video.channel.t_id).to eq 2
     end
 

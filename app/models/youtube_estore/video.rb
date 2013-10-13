@@ -2,6 +2,9 @@ require 'estore_conventions'
 module YoutubeEstore
   class Video < ActiveRecord::Base
     include EstoreConventions
+    include Blobable
+    
+
     attr_datetime :published_at
 
     before_save :calculate_approval_rating

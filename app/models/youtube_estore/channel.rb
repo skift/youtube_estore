@@ -1,8 +1,12 @@
 require 'estore_conventions'
+require 'paper_trail'
+
 module YoutubeEstore
   class Channel < ActiveRecord::Base
     include EstoreConventions
+    include Blobable
 
+    
     attr_datetime :published_at
     has_paper_trail
 
@@ -105,8 +109,6 @@ module YoutubeEstore
     def view_count_past_14_days
       self.archived_attribute('view_count', (14.days))
     end
-
-
 
 
 
