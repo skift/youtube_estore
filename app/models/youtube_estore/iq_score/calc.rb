@@ -28,6 +28,7 @@ module IqScore
 
     attr_reader :data_object, :calculations_list, :weights_list
 
+
     def initialize(d_object)
       @data_object = d_object
       set_config(@data_object)

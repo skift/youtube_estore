@@ -184,24 +184,23 @@ BOOLEAN = {
 SCORE_WEIGHTS = { 
 
   :subscriber_count => {
-      weight: 0.25, 
-      thresholds: ZERO_TO_TWENTY_FIVE #replace with actual threshold
+      weight: 0.20,
+      thresholds: ZERO_TO_TEN_THOUSAND
   }, 
 
   :view_count => {
-      weight: 0.50, 
-      thresholds: { 
-          "..99" =>  0,
-          100..999 => 25,
-          1000..999999 => 50,
-          1000000..9999999 => 75,
-          "10000000.." => 100
-        }
-
+      weight: 0.25,
+      thresholds:  ZERO_TO_TEN_MILLION
   },
+
+  # :video_count_per_month => {
+  #     weight: 0.05,
+  #     thresholds:  ZERO_TO_FOUR
+  # },
+
   :overall_approval_rating_of_videos => {
     weight: 0.25, 
-    thresholds: Proc.new{ |num|  num * 100 }
+    thresholds: TIMES_ONE_HUNDRED
   }
 
 }
