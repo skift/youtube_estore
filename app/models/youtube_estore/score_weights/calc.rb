@@ -1,4 +1,5 @@
 =begin 
+=begin 
 
 def MyThing
   attr_reader :sprockets
