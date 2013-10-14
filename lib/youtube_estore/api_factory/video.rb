@@ -1,5 +1,9 @@
+require 'estore_conventions'
+
+
 module YoutubeEstore
   module ApiFactory
+
     def self.Video(obj)
       attributes_hash = {}
       attributes_hash[:t_id] = obj[:id]
@@ -20,5 +24,7 @@ module YoutubeEstore
 
       EstoreConventions::Builder.build_from_object(Video, obj, attributes_hash)
     end
+
+    
   end
 end

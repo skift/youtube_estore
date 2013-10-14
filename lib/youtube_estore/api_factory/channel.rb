@@ -1,3 +1,5 @@
+require 'estore_conventions'
+
 module YoutubeEstore
   module ApiFactory
     def self.Channel(obj)
@@ -12,6 +14,6 @@ module YoutubeEstore
       attributes_hash[:t_id] = obj[:id]
 
       EstoreConventions::Builder.build_from_object(Channel, obj, attributes_hash)
-    end
+    end    
   end
 end
