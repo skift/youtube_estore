@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009211203) do
+ActiveRecord::Schema.define(:version => 20131013040014) do
+
+  create_table "content_blobs", :force => true do |t|
+    t.integer  "blobable_id"
+    t.string   "blobable_type"
+    t.text     "contents",      :limit => 2147483647
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+  end
+
+  add_index "content_blobs", ["blobable_type", "blobable_id"], :name => "index_content_blobs_on_blobable_type_and_blobable_id"
 
   create_table "versions", :force => true do |t|
     t.string   "item_type",  :null => false

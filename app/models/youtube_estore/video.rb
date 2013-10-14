@@ -1,8 +1,9 @@
 require 'estore_conventions'
+require 'active_record_content_blob'
 module YoutubeEstore
   class Video < ActiveRecord::Base
     include EstoreConventions
-    include Blobable
+    include ActiveRecordContentBlob::Blobable
     
 
     attr_datetime :published_at

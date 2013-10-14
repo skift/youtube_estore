@@ -1,10 +1,11 @@
 require 'estore_conventions'
 require 'paper_trail'
+require 'active_record_content_blob'
 
 module YoutubeEstore
   class Channel < ActiveRecord::Base
     include EstoreConventions
-    include Blobable
+    include ActiveRecordContentBlob::Blobable
 
     
     attr_datetime :published_at
