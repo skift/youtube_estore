@@ -233,42 +233,13 @@ module YoutubeEstore
 
     end
 
-    context 'iq score' do
-      before(:each) do
-        @channel = Channel.create(t_id: '1', view_count: 100, subscriber_count: 9000)
-        @video = Video.create(t_id: 1, channel_id: 1, likes: 1, dislikes: 0)
-
-      end
-
-      it 'view_count_calculation' do
-        expect(@channel.view_count_calculation).to eq 25
-      end
-
-      it 'subscriber_count_calculation' do
-        expect(@channel.subscriber_count_calculation).to eq 75
-      end
-
-      it 'overall_approval_rating_of_videos_calculation' do
-        expect(@channel.overall_approval_rating_of_videos_calculation).to eq 100
-      end
-
+   it 'video_count_per_month' do
+      @channel = YoutubeEstore::Channel.create(t_id: 1)
+      @channel.videos << @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200)
+      @channel.videos << @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100)    
+      expect(@channel.video_count_per_month).to eq 2
     end
 
-
-
-
-
-    context 'new iq score' do
-      before(:each) do
-        @channel = Channel.create(t_id: '1', view_count: 100, subscriber_count: 9000)
-        @video = Video.create(t_id: 1, channel_id: 1, likes: 1, dislikes: 0)
-      end
-
-      it 'should initialize a new method' do
-        c = IqScore::Calc.new(@channel)
-        binding.pry
-      end
-    end
 
   end
 end

@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:skift/iq_score.git
+  revision: 7fc0fb3b1cc8394e4d7a809bc7bf528df37a3766
+  specs:
+    iq_score (0.1.0)
+
 PATH
   remote: .
   specs:
@@ -72,7 +78,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25)
-    multi_json (1.8.1)
+    multi_json (1.8.2)
     mysql2 (0.3.13)
     paper_trail (3.0.0.beta1)
       activerecord (>= 3.0, < 5.0)
@@ -140,6 +146,7 @@ PLATFORMS
 DEPENDENCIES
   active_record_content_blob
   database_cleaner (= 1.0.1)
+  iq_score!
   jquery-rails
   mysql2
   pry-rails

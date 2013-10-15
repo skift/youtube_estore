@@ -111,7 +111,10 @@ module YoutubeEstore
       self.archived_attribute('view_count', (14.days))
     end
 
-
+    def video_count_per_month
+      binding.pry
+      self.videos.rate_per_month(:overall)
+    end
 
 
   end
