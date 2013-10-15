@@ -22,10 +22,16 @@ module YoutubeEstore
           # need to refactor this
         expect(Video.count_by(:year).select{|k,v| k.year == 2011}.first[1] ).to eq 2
 
-
       end
 
-    end
 
+      it 'should have :rate_by aggregation' do 
+        @channel = Channel.create(t_id: 1)
+        binding.pry
+      end
+
+
+
+    end
   end
 end
