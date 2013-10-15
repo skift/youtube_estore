@@ -27,7 +27,8 @@ module YoutubeEstore
 
       it 'should have :rate_by aggregation' do 
         @channel = Channel.create(t_id: 1)
-        binding.pry
+       
+        expect(@channel.videos.rate_per_year(:overall)).to eq 0
       end
 
 

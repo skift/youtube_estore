@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module YoutubeEstore
-  describe Channel do
+  describe Channel, skip: true do
 
     context 'new iq score' do
       before(:each) do

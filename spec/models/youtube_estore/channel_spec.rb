@@ -233,11 +233,13 @@ module YoutubeEstore
 
     end
 
-   it 'video_count_per_month' do
+   it 'video_rate_per_month'  do
       @channel = YoutubeEstore::Channel.create(t_id: 1)
-      @channel.videos << @video1 = Video.create(t_id: 1, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200)
-      @channel.videos << @video2 = Video.create(t_id: 2, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100)    
-      expect(@channel.video_count_per_month).to eq 2
+      @channel.videos << @video1 = Video.create(t_id: 1, published_at: 10.days.ago, duration_seconds: 10, likes: 10, dislikes: 40, view_count: 200)
+      @channel.videos << @video2 = Video.create(t_id: 2, published_at: 10.days.ago, duration_seconds: 20, likes: 20, dislikes: 20, view_count: 100)    
+      @channel.save
+
+      expect(@channel.video_rate_per_month).to eq 2
     end
 
 
