@@ -1,3 +1,5 @@
+require 'estore_conventions'
+
 module YoutubeEstore
   module ApiFactory
   end
