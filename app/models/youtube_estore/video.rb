@@ -1,5 +1,6 @@
 require 'estore_conventions'
 require 'active_record_content_blob'
+
 module YoutubeEstore
   class Video < ActiveRecord::Base
     include EstoreConventions

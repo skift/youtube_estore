@@ -13,7 +13,12 @@ module YoutubeEstore
       attributes_hash[:default_thumbnail] = obj.snippet.thumbnails[:default][:url]
       attributes_hash[:t_id] = obj[:id]
 
-      EstoreConventions::Builder.build_from_object(Channel, obj, attributes_hash)
+#      EstoreConventions::Builder.build_from_object(Channel, obj, attributes_hash)
+
+
+      identifier_hash = {t_id: attributes_hash[:t_id] }
+      video = Channel.factory_build_for_store( attributes_hash, identifier_hash, obj  )
+
     end    
   end
 end

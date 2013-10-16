@@ -7,10 +7,10 @@ gemspec
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
-gem 'active_record_content_blob'
 
 gem 'iq_score', :git => 'git@github.com:skift/iq_score.git'
 
+gem 'estore_conventions',  git: 'git@github.com:skift/estore_conventions.git'
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing

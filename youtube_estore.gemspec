@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 3.2.14"
   s.add_dependency 'hashie'
-  s.add_dependency 'aggtive_record'
-  s.add_dependency 'estore_conventions'
+
+#  s.add_dependency 'estore_conventions',
   s.add_dependency 'active_record_content_blob'
 
 
