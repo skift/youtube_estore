@@ -118,7 +118,7 @@ module YoutubeEstore
 
 
     def self.convert_iso8601_to_seconds(string)
-      min, sec = string.match(/^PT(\d*)M(\d*)S$/)[1..2]
+      min, sec = string.match(/^PT(?:(\d*)M)?(?:(\d*)S)?$/)[1..2]
       total = min.to_i*60 + sec.to_i
     end
 

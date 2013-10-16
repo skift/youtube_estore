@@ -3,7 +3,7 @@ require 'estore_conventions'
 
 module YoutubeEstore
   module ApiFactory
-    def self.Video(obj)
+    def self.Video(obj, &blk)
       attributes_hash = {}
 
       attributes_hash[:t_id] = obj[:id]
@@ -28,7 +28,7 @@ module YoutubeEstore
 #      EstoreConventions::Builder.build_from_object(Video, obj, attributes_hash)
 
       identifier_hash = {t_id: attributes_hash[:t_id] }
-      video = Video.factory_build_for_store( attributes_hash, identifier_hash, obj  )
+      video = Video.factory_build_for_store( attributes_hash, identifier_hash, obj, &blk)
 
       return video
     end
