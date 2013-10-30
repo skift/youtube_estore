@@ -6,6 +6,7 @@ class CreateYoutubeEstoreChannels < ActiveRecord::Migration
         t.integer   :subscriber_count
         t.integer   :video_count
         t.string    :username
+        t.string    :title
         t.integer   :view_count
         t.string    :default_thumbnail
         t.string    :t_id

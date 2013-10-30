@@ -35,23 +35,24 @@ ActiveRecord::Schema.define(:version => 20131013040014) do
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
   create_table "youtube_estore_channels", :force => true do |t|
+    t.string   "t_id"
     t.datetime "published_at"
     t.string   "description"
     t.integer  "subscriber_count"
     t.integer  "video_count"
     t.string   "username"
+    t.string   "title"
     t.integer  "view_count"
     t.string   "default_thumbnail"
-    t.string   "t_id"
     t.datetime "rails_created_at"
     t.datetime "rails_updated_at"
   end
 
   create_table "youtube_estore_videos", :force => true do |t|
+    t.string   "t_id"
     t.integer  "duration_seconds"
     t.string   "category_id"
     t.string   "description"
-    t.string   "username"
     t.string   "title"
     t.datetime "published_at"
     t.integer  "view_count"
@@ -61,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20131013040014) do
     t.integer  "likes",             :default => 0
     t.integer  "dislikes",          :default => 0
     t.float    "approval_rating",   :default => 0.0
-    t.string   "t_id"
     t.string   "channel_id"
     t.string   "default_thumbnail"
     t.datetime "rails_created_at"

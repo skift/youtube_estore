@@ -1,21 +1,31 @@
 require 'estore_conventions'
-require 'paper_trail'
 require 'active_record_content_blob'
-require_relative './score_weights/channel.rb'
 
 module YoutubeEstore
   class Channel < ActiveRecord::Base
     include EstoreConventions
     include ActiveRecordContentBlob::Blobable
-    include Blobable
-    include ChannelScore
     
     attr_datetime :published_at
     has_paper_trail
 
     has_many :videos, primary_key: :t_id
 
-    attr_accessible :published_at, :description, :subscriber_count, :video_count, :username, :view_count, :default_thumbnail, :t_id
+    attr_accessible :published_at, :description, :subscriber_count,
+     :video_count, :username, :view_count, :default_thumbnail, :title, 
+     :t_id
+
+
+    # converts a t_id of this: UCFXno2GGPrAW-XU0pOc4QoA
+    # to: UUFXno2GGPrAW-XU0pOc4QoA
+    def default_upload_playlist
+      if t_id.match(/^UC/)
+        t_id.sub(/^UC/, 'UU')
+      else
+        nil
+      end
+    end
+
 
     DELEGATING_REGEX = /^\w+?(?=(?:_of)?_videos)/
 

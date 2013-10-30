@@ -1,5 +1,6 @@
 require "youtube_estore/engine"
 
+require 'estore_conventions'
 module YoutubeEstore
 end
 

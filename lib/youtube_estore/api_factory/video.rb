@@ -1,6 +1,3 @@
-require 'estore_conventions'
-
-
 module YoutubeEstore
   module ApiFactory
     def self.Video(obj, &blk)
@@ -9,7 +6,7 @@ module YoutubeEstore
       attributes_hash[:t_id] = obj[:id]
       attributes_hash[:published_at] = obj.snippet.publishedAt
       attributes_hash[:description] = obj.snippet.description
-      attributes_hash[:username] = obj.snippet.title
+      attributes_hash[:title] = obj.snippet.title
       attributes_hash[:default_thumbnail] = obj.snippet.thumbnails[:default][:url]
       attributes_hash[:channel_id] = obj.snippet.channelId
       attributes_hash[:category_id] = obj.snippet.categoryId

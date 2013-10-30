@@ -13,7 +13,8 @@ module YoutubeEstore
 
     belongs_to :channel, primary_key: :t_id
 
-    attr_accessible :duration_seconds, :category_id, :description, :title, :published_at, :view_count, :favorite_count, :is_embeddable, :likes, :dislikes, :approval_rating, :t_id, :channel_id, :username, :default_thumbnail, :category_id, :comment_count
+    attr_accessible :duration_seconds, :category_id, :description, :title, :published_at, :view_count, :favorite_count, :is_embeddable, :likes, :dislikes, :approval_rating, :t_id, 
+      :channel_id, :username, :default_thumbnail, :category_id, :comment_count
 
 
     def source_link

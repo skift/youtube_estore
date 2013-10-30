@@ -6,10 +6,14 @@ module YoutubeEstore
       attributes_hash[:description] = obj.snippet.description
       attributes_hash[:subscriber_count] = obj.statistics.subscriberCount
       attributes_hash[:video_count] = obj.statistics.videoCount
-      attributes_hash[:username] = obj.snippet.title
+      attributes_hash[:title] = obj.snippet.title
       attributes_hash[:view_count] = obj.statistics.viewCount
       attributes_hash[:default_thumbnail] = obj.snippet.thumbnails[:default][:url]
       attributes_hash[:t_id] = obj[:id]
+
+      attributes_hash[:username] = obj[:username] if obj[:username]
+
+      # note :username appears to be deprecated from official api
 
 #      EstoreConventions::Builder.build_from_object(Channel, obj, attributes_hash)
 

@@ -19,7 +19,6 @@ PATH
     youtube_estore (0.0.1)
       active_record_content_blob
       hashie
-      paper_trail (>= 3.0.0.beta1)
       rails (~> 3.2.14)
 
 GEM
@@ -84,8 +83,6 @@ GEM
     mime-types (1.25)
     multi_json (1.8.2)
     mysql2 (0.3.13)
-    paper_trail (3.0.0.beta1)
-      activerecord (>= 3.0, < 5.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)

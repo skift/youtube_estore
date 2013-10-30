@@ -4,7 +4,6 @@ class CreateYoutubeEstoreVideos < ActiveRecord::Migration
       t.integer  "duration_seconds"
       t.string   "category_id"
       t.string   "description"
-      t.string   "username"
       t.string   "title"
       t.datetime "published_at"
       t.integer  "view_count"
