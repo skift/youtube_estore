@@ -16,6 +16,13 @@ module YoutubeEstore
     attr_accessible :duration_seconds, :category_id, :description, :title, :published_at, :view_count, :favorite_count, :is_embeddable, :likes, :dislikes, :approval_rating, :t_id, 
       :channel_id, :username, :default_thumbnail, :category_id, :comment_count
 
+    def link
+      "http://www.youtube.com/watch?v=#{t_id}"
+    end
+
+    def thumbnail
+      self.default_thumbnail.gsub('default', 'hqdefault')
+    end
 
     def source_link
       "https://www.youtube.com/videos/#{t_id}"
@@ -122,6 +129,21 @@ module YoutubeEstore
       min, sec = string.match(/^PT(?:(\d*)M)?(?:(\d*)S)?$/)[1..2]
       total = min.to_i*60 + sec.to_i
     end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
