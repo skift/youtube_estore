@@ -32,12 +32,18 @@ module YoutubeEstore
 
    # returns integer
     def self.average_duration   # channel.     average_duration   _of_videos
-       self.average(:duration_seconds)
+       self.average(:duration_seconds).to_i
     end
 
     # returns float
     def self.overall_approval_rating  # channel.overall_approval_rating_of_videos
-      self.sum(:likes).to_f / (self.sum(:likes) + self.sum(:dislikes))
+      v = (self.sum(:likes) + self.sum(:dislikes)).to_f
+
+      if v == 0
+        return 0
+      else
+        self.sum(:likes) / v
+      end
     end
 
 
@@ -126,17 +132,20 @@ module YoutubeEstore
 
 
     def self.convert_iso8601_to_seconds(string)
-      min, sec = string.match(/^PT(?:(\d*)M)?(?:(\d*)S)?$/)[1..2]
-      total = min.to_i*60 + sec.to_i
+      if mtch = string.match(/^PT(?:(\d*)M)?(?:(\d*)S)?$/)
+        min, sec = mtch[1..2]
+        
+        total = min.to_i*60 + sec.to_i
+      end
     end
 
 
 
 
-
-
-
-
+    # untested, returns Integer
+    def self.average_view_count
+      average(:view_count).to_i
+    end
 
 
 

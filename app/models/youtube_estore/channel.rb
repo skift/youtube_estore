@@ -96,43 +96,13 @@ module YoutubeEstore
     end
 
 
-    def subscriber_count_past_30_days
-      self.archived_attribute('subscriber_count', (30.days))
-    end
-
-    def subscriber_count_past_14_days
-      self.archived_attribute('subscriber_count', (14.days))
-    end
-
-
-
-    def video_count_past_30_days
-      self.archived_attribute('video_count', (30.days))
-    end
-
-    def video_count_past_14_days
-      self.archived_attribute('video_count', (14.days))
-    end
-
-
-
-    def view_count_past_30_days
-      self.archived_attribute('view_count', (30.days))
-    end
-
-    def view_count_past_14_days
-      self.archived_attribute('view_count', (14.days))
-    end
-
-    def video_rate_per_month
-      self.videos.rate_per_month(:overall)
-    end
 
 
 ############## Aggtive Record based aggregations
 #### Needs to be refactored
 
     # This overrides tweets.rate_per_day_overall
+    # DEPRECATED -- we just care about rate_per_month
     def rate_per_day_overall_of_videos
       ( video_count / account_age_in_days.to_f ).round(1)
     end
@@ -140,18 +110,22 @@ module YoutubeEstore
 
 ### TODO: Refactor
 
-    foo_relation = :videos
-    rate_foos = [[:day, :past_14_days], [:day, :past_30_days], [:day, :past_year]]
-    rate_foos.each do |(bucket, span)|
-      define_method "rate_per_#{bucket}_#{span}_of_videos" do 
-        videos.send(span).send("rate_per_#{bucket}")
-      end
-    end
+    # REFACTOR LATER
+    foo_relations = [:videos]
 
-    count_foos = [[:day, :past_14_days], [:day, :past_30_days], [:week, :past_year], [:day_of_week, :past_year], [:hour_of_day, :past_year]]
-    count_foos.each do |(bucket, span)|
-      define_method "count_by_#{bucket}_#{span}_of_videos" do 
-        videos.send(span).send("count_by_#{bucket}")
+    foo_relations.each do |relation|
+      rate_foos = [[:month, :past_year], [:month, :overall]]
+      rate_foos.each do |(bucket, span)|
+        define_method "rate_per_#{bucket}_#{span}_of_#{relation}" do 
+          self.send(relation).send(span).send("rate_per_#{bucket}")
+        end
+      end
+
+      count_foos = [[:month, :overall]]
+      count_foos.each do |(bucket, span)|
+        define_method "count_by_#{bucket}_#{span}_of_#{relation}" do 
+          self.send(relation).send(span).send("count_by_#{bucket}")
+        end
       end
     end
 
@@ -176,11 +150,42 @@ private
     def account_age_in_days
       ((Time.now - self.published_at)/(60*60*24)).ceil
     end
-
-
-
-
-
-
   end
 end
+
+
+
+
+
+
+    # def subscriber_count_past_30_days
+    #   self.archived_attribute('subscriber_count', (30.days))
+    # end
+
+    # def subscriber_count_past_14_days
+    #   self.archived_attribute('subscriber_count', (14.days))
+    # end
+
+
+
+    # def video_count_past_30_days
+    #   self.archived_attribute('video_count', (30.days))
+    # end
+
+    # def video_count_past_14_days
+    #   self.archived_attribute('video_count', (14.days))
+    # end
+
+
+
+    # def view_count_past_30_days
+    #   self.archived_attribute('view_count', (30.days))
+    # end
+
+    # def view_count_past_14_days
+    #   self.archived_attribute('view_count', (14.days))
+    # end
+
+    # def video_rate_per_month
+    #   self.videos.rate_per_month(:overall)
+    # end
