@@ -15,6 +15,15 @@ module YoutubeEstore
      :video_count, :username, :view_count, :default_thumbnail, :title, 
      :t_id
 
+
+    def trending_content(lim=5)
+      most_viewed_of_videos(lim)
+    end
+
+    def latest_content_date
+      videos.order('published_at DESC').pluck('published_at').first
+    end
+
     def link
       "http://www.youtube.com/user/#{username}"
     end
@@ -50,50 +59,6 @@ module YoutubeEstore
     end
 
 
-
-    def self.most_liked
-      proc = Proc.new{|c| c.likes_count_of_videos}
-      add_sorted_value_and_sort(proc)
-    end
-    
-    def self.most_liked_past_month
-      proc = Proc.new{|c| c.likes_count_past_month_of_videos}
-      add_sorted_value_and_sort(proc)
-    end
-
-    def self.most_approved
-      proc = Proc.new{|c| (c.likes_count_of_videos.to_f / (c.likes_count_of_videos + c.dislikes_count_of_videos)) }
-      add_sorted_value_and_sort(proc)
-    end
-
-    def self.most_approved_past_month
-      proc = Proc.new{|c|         
-        t =  (c.likes_count_past_month_of_videos + c.dislikes_count_past_month_of_videos)
-        if t == 0
-          0
-        else
-          c.likes_count_past_month_of_videos.to_f / t
-        end
-      }
-      add_sorted_value_and_sort(proc)
-    end
-
-    def self.most_viewed
-      add_sorted_value_and_sort('view_count')
-    end
-
-    def self.most_viewed_past_month
-      proc = Proc.new{|c| c.views_count_past_month_of_videos}
-      add_sorted_value_and_sort(proc)
-    end
-
-    def self.most_videos
-      add_sorted_value_and_sort('video_count')
-    end
-
-    def self.most_videos_past_month
-      add_sorted_value_and_sort('video_count')
-    end
 
 
 
@@ -142,6 +107,55 @@ module YoutubeEstore
       self.archived_attribute('view_count', (14.days))
     end
 
+
+
+
+
+#### NOTE: this may all be deprecated
+
+    def self.most_liked
+      proc = Proc.new{|c| c.likes_count_of_videos}
+      add_sorted_value_and_sort(proc)
+    end
+    
+    def self.most_liked_past_month
+      proc = Proc.new{|c| c.likes_count_past_month_of_videos}
+      add_sorted_value_and_sort(proc)
+    end
+
+    def self.most_approved
+      proc = Proc.new{|c| (c.likes_count_of_videos.to_f / (c.likes_count_of_videos + c.dislikes_count_of_videos)) }
+      add_sorted_value_and_sort(proc)
+    end
+
+    def self.most_approved_past_month
+      proc = Proc.new{|c|         
+        t =  (c.likes_count_past_month_of_videos + c.dislikes_count_past_month_of_videos)
+        if t == 0
+          0
+        else
+          c.likes_count_past_month_of_videos.to_f / t
+        end
+      }
+      add_sorted_value_and_sort(proc)
+    end
+
+    def self.most_viewed
+      add_sorted_value_and_sort('view_count')
+    end
+
+    def self.most_viewed_past_month
+      proc = Proc.new{|c| c.views_count_past_month_of_videos}
+      add_sorted_value_and_sort(proc)
+    end
+
+    def self.most_videos
+      add_sorted_value_and_sort('video_count')
+    end
+
+    def self.most_videos_past_month
+      add_sorted_value_and_sort('video_count')
+    end
 
 
 
