@@ -30,10 +30,6 @@ module YoutubeEstore
 
 ################### Class Methods #######################
 
-   # returns integer
-    def self.average_duration   # channel.     average_duration   _of_videos
-       self.average(:duration_seconds).to_i
-    end
 
     # returns float
     def self.overall_approval_rating  # channel.overall_approval_rating_of_videos
@@ -82,12 +78,48 @@ module YoutubeEstore
 
 
 
-
-
-
-    def self.longest(lim=1) # longest_videos
-      add_sorted_value_and_sort('duration_seconds', {limit: lim})
+   # returns integer
+    def self.average_duration   # channel.     average_duration   _of_videos
+       self.average(:duration_seconds).to_i
     end
+
+    # untested, separate from self.longest
+    # returns seconds(Integer)
+    def self.longest_duration
+      if v = self.longest
+        return v.duration_seconds
+      end
+    end
+
+    # untested, just returns one
+    def self.longest
+      self.order('duration_seconds DESC').first
+    end
+
+    # untested, seperate from self.most_viewed
+    # returns number of views
+    def self.highest_view_count
+      if v = highest_viewed
+        return v.view_count
+      end
+    end
+
+    # untested, different implementation than most_viewed
+    def self.highest_viewed
+      self.order('view_count DESC').first
+    end
+
+    # untested, returns Integer
+    def self.average_view_count
+      average(:view_count).to_i
+    end
+
+
+
+    # deprecated
+    # def self.longest(lim=1) # longest_videos
+    #   add_sorted_value_and_sort('duration_seconds', {limit: lim})
+    # end
 
     def self.most_liked(lim=10)
       add_sorted_value_and_sort('likes', {limit: lim})
@@ -139,13 +171,6 @@ module YoutubeEstore
       end
     end
 
-
-
-
-    # untested, returns Integer
-    def self.average_view_count
-      average(:view_count).to_i
-    end
 
 
 
