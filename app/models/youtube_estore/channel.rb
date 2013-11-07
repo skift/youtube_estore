@@ -61,7 +61,14 @@ module YoutubeEstore
 
 
 
+    # aliases for consistency sake
+    def view_count_of_videos
+      self.view_count
+    end
 
+    def count_of_videos
+      self.video_count
+    end 
 
 ############## Aggtive Record based aggregations
 #### Needs to be refactored
