@@ -91,10 +91,30 @@ module YoutubeEstore
       end
     end
 
+
+    # returns single video, untested
+    def self.least_approved
+      self.order('approval_rating ASC').first
+    end
+
+    # returns single video, untested
+    def self.most_approved
+      self.order('approval_rating DESC').first
+    end
+
+
+
+
     # untested, just returns one
     def self.longest
       self.order('duration_seconds DESC').first
     end
+
+    # untested, just returns one
+    def self.shortest
+      self.order('duration_seconds ASC').first
+    end
+
 
     # untested, seperate from self.most_viewed
     # returns number of views
