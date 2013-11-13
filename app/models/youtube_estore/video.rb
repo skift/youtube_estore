@@ -114,8 +114,7 @@ module YoutubeEstore
     def self.shortest
       self.order('duration_seconds ASC').first
     end
-
-
+    
     # untested, seperate from self.most_viewed
     # returns number of views
     def self.highest_view_count
