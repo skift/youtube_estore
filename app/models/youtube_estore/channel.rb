@@ -107,19 +107,19 @@ module YoutubeEstore
 
 
     def historical_subscriber_count_past_14_days
-      self.archived_attribute('subscriber_count', (14.days))
+      self.archived_attribute('subscriber_count', (14.days.ago))
     end
 
     def historical_view_count_past_14_days
-      self.archived_attribute('view_count', (14.days))
+      self.archived_attribute('view_count', (14.days.ago))
     end
 
     def historical_rate_per_day_of_subscriber_count_past_14_days
-      historical_rate_per_day(:subscriber_count, 14.days)
+      historical_rate_per_day(:subscriber_count, 14.days.ago)
     end
 
     def historical_rate_per_day_of_view_count_past_14_days
-      historical_rate_per_day(:view_count, 14.days)
+      historical_rate_per_day(:view_count, 14.days.ago)
     end
 
 
