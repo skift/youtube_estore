@@ -59,6 +59,10 @@ module YoutubeEstore
     end
 
 
+    ## not tested
+    def average_view_count_per_day
+      view_count / account_age_in_days.to_f
+    end
 
 
     # aliases for consistency sake
