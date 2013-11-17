@@ -94,24 +94,24 @@ module YoutubeEstore
 
     # returns single video, untested
     def self.least_approved
-      self.enough_evaluations.order('approval_rating ASC').first
+      self.enough_views.order('approval_rating ASC').first
     end
 
     # returns single video, untested
     def self.most_approved
-      self.enough_evaluations.order('approval_rating DESC').first
+      self.enough_views.order('approval_rating DESC').first
     end
 
     # returns Hash of keys, from 0 to 100, with values of videos by approval rating
 
     def self.approval_rating_distribution
-      self.enough_evaluations.group('CAST( ROUND(approval_rating * 100) AS UNSIGNED )').count
+      self.enough_views.group('CAST( ROUND(approval_rating * 100) AS UNSIGNED )').count
     end
 
     # untested
-    scope :enough_views, where('view_count > 1000')
+    scope :enough_views, where('view_count > 5000')
     scope :enough_ratings, where('likes + dislikes > 10')
-    scope :enough_evaluations, ->(){ enough_views.enough_ratings }
+#    scope :enough_evaluations, ->(){ enough_views.enough_ratings }
 
     # untested, just returns one
     def self.longest
