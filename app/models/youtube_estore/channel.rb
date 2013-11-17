@@ -15,6 +15,9 @@ module YoutubeEstore
      :video_count, :username, :view_count, :default_thumbnail, :title, 
      :t_id
 
+    def account_slug
+      username
+    end
 
     def trending_content(lim=5)
       most_viewed_of_videos(lim)
