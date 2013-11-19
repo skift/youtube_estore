@@ -19,6 +19,12 @@ module YoutubeEstore
       username
     end
 
+
+    def default_thumbnail_secure
+      default_thumbnail.sub(/^https?:/, '')
+
+    end
+
     def trending_content(lim=5)
       most_viewed_of_videos(lim)
     end
@@ -28,7 +34,7 @@ module YoutubeEstore
     end
 
     def link
-      "http://www.youtube.com/user/#{username}"
+      "//www.youtube.com/user/#{username}"
     end
 
     # converts a t_id of this: UCFXno2GGPrAW-XU0pOc4QoA

@@ -17,15 +17,24 @@ module YoutubeEstore
       :channel_id, :username, :default_thumbnail, :category_id, :comment_count
 
     def link
-      "http://www.youtube.com/watch?v=#{t_id}"
+      "//www.youtube.com/watch?v=#{t_id}"
     end
 
     def thumbnail
       self.default_thumbnail.gsub('default', 'hqdefault')
     end
 
+    def thumbnail_secure
+      thumbnail.sub(/^https?:/, '')
+    end
+
+    # may be deprecated
+    def default_thumbnail_secure
+      default_thumbnail.sub(/^https?:/, '')
+    end
+
     def source_link
-      "https://www.youtube.com/videos/#{t_id}"
+      "//www.youtube.com/videos/#{t_id}"
     end
 
 ################### Class Methods #######################
