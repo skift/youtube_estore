@@ -21,16 +21,16 @@ module YoutubeEstore
     end
 
     def thumbnail
-      self.default_thumbnail.gsub('default', 'hqdefault')
+      self.default_thumbnail.to_s.sub('default', 'hqdefault')
     end
 
     def thumbnail_secure
-      thumbnail.sub(/^https?:/, '')
+      thumbnail.to_s.sub(/^https?:/, '')
     end
 
     # may be deprecated
     def default_thumbnail_secure
-      default_thumbnail.sub(/^https?:/, '')
+      default_thumbnail.to_s.sub(/^https?:/, '')
     end
 
     def source_link

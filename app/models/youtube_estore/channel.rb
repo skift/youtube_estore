@@ -21,8 +21,7 @@ module YoutubeEstore
 
 
     def default_thumbnail_secure
-      default_thumbnail.sub(/^https?:/, '')
-
+      default_thumbnail.to_s.sub(/^https?:/, '')
     end
 
     def trending_content(lim=5)
