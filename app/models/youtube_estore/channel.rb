@@ -69,6 +69,7 @@ module YoutubeEstore
 
     ## not tested
     def average_view_count_per_day
+      return 0 if account_age_in_days == 0
       view_count / account_age_in_days.to_f
     end
 
@@ -187,8 +188,9 @@ module YoutubeEstore
 
 
 private
+    # return 0 if self.published_at isn't valid
     def account_age_in_days
-      ((Time.now - self.published_at)/(60*60*24)).ceil
+      ((Time.now - self.published_at)/(60*60*24)).ceil rescue 0
     end
   end
 end
