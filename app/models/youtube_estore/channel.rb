@@ -190,7 +190,11 @@ module YoutubeEstore
 private
     # return 0 if self.published_at isn't valid
     def account_age_in_days
-      ((Time.now - self.published_at)/(60*60*24)).ceil rescue 0
+      if self.published_at
+        ((Time.now - self.published_at)/(60*60*24)).ceil
+      else
+        0
+      end
     end
   end
 end
