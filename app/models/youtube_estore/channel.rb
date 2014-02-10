@@ -33,7 +33,7 @@ module YoutubeEstore
     end
 
     def link
-      "//www.youtube.com/user/#{username}"
+      "http://www.youtube.com/user/#{username || t_id}"
     end
 
     # converts a t_id of this: UCFXno2GGPrAW-XU0pOc4QoA
@@ -110,11 +110,11 @@ module YoutubeEstore
       count_foos.each do |(bucket, span)|
         define_method "count_by_#{bucket}_#{span}_of_#{relation}" do 
           self.send(relation).send(span).send("count_by_#{bucket}")
-        end
+        
       end
     end
 
-
+end
 
 ### HISTORY STUFF
 
