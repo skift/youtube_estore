@@ -36,6 +36,10 @@ module YoutubeEstore
       "http://www.youtube.com/user/#{username || t_id}"
     end
 
+    def profile_url
+      link
+    end
+
     # converts a t_id of this: UCFXno2GGPrAW-XU0pOc4QoA
     # to: UUFXno2GGPrAW-XU0pOc4QoA
     def default_upload_playlist
