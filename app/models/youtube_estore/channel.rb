@@ -140,6 +140,22 @@ end
     end
 
 
+    def historical_subscriber_count_past_60_days
+      self.archived_attribute('subscriber_count', (60.days.ago))
+    end
+
+    def historical_view_count_past_60_days
+      self.archived_attribute('view_count', (60.days.ago))
+    end
+
+    def historical_rate_per_day_of_subscriber_count_past_60_days
+      historical_rate_per_day(:subscriber_count, 60.days.ago)
+    end
+
+    def historical_rate_per_day_of_view_count_past_60_days
+      historical_rate_per_day(:view_count, 60.days.ago)
+    end
+
 
 
 #### NOTE: this may all be deprecated
