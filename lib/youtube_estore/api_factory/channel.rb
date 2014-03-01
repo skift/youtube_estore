@@ -3,7 +3,7 @@ module YoutubeEstore
     def self.Channel(obj)
       attributes_hash = {}
       attributes_hash[:published_at] = obj.snippet.publishedAt
-      attributes_hash[:description] = obj.snippet.description
+      attributes_hash[:description] = obj.snippet.description[0..254]
       attributes_hash[:subscriber_count] = obj.statistics.subscriberCount
       attributes_hash[:video_count] = obj.statistics.videoCount
       attributes_hash[:title] = obj.snippet.title
