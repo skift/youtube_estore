@@ -5,7 +5,7 @@ module YoutubeEstore
 
       attributes_hash[:t_id] = obj[:id]
       attributes_hash[:published_at] = obj.snippet.publishedAt
-      attributes_hash[:description] = obj.snippet.description
+      attributes_hash[:description] = obj.snippet.description.to_s[0..254]
       attributes_hash[:title] = obj.snippet.title
       attributes_hash[:default_thumbnail] = obj.snippet.thumbnails[:default][:url]
       attributes_hash[:channel_id] = obj.snippet.channelId
