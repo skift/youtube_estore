@@ -1,18 +1,16 @@
 require 'estore_conventions'
-require 'active_record_content_blob'
 
 module YoutubeEstore
   class Channel < ActiveRecord::Base
     include EstoreConventions
-    include ActiveRecordContentBlob::Blobable
-    
+
     attr_datetime :published_at
     has_paper_trail
 
     has_many :videos, primary_key: :t_id
 
     attr_accessible :published_at, :description, :subscriber_count,
-     :video_count, :username, :view_count, :default_thumbnail, :title, 
+     :video_count, :username, :view_count, :default_thumbnail, :title,
      :t_id
 
     def account_slug
@@ -85,7 +83,7 @@ module YoutubeEstore
 
     def count_of_videos
       self.video_count
-    end 
+    end
 
 ############## Aggtive Record based aggregations
 #### Needs to be refactored
@@ -105,16 +103,16 @@ module YoutubeEstore
     foo_relations.each do |relation|
       rate_foos = [[:month, :past_year], [:month, :overall]]
       rate_foos.each do |(bucket, span)|
-        define_method "rate_per_#{bucket}_#{span}_of_#{relation}" do 
+        define_method "rate_per_#{bucket}_#{span}_of_#{relation}" do
           self.send(relation).send(span).send("rate_per_#{bucket}")
         end
       end
 
       count_foos = [[:month, :overall]]
       count_foos.each do |(bucket, span)|
-        define_method "count_by_#{bucket}_#{span}_of_#{relation}" do 
+        define_method "count_by_#{bucket}_#{span}_of_#{relation}" do
           self.send(relation).send(span).send("count_by_#{bucket}")
-        
+
       end
     end
 
@@ -164,7 +162,7 @@ end
       proc = Proc.new{|c| c.likes_count_of_videos}
       add_sorted_value_and_sort(proc)
     end
-    
+
     def self.most_liked_past_month
       proc = Proc.new{|c| c.likes_count_past_month_of_videos}
       add_sorted_value_and_sort(proc)
@@ -176,7 +174,7 @@ end
     end
 
     def self.most_approved_past_month
-      proc = Proc.new{|c|         
+      proc = Proc.new{|c|
         t =  (c.likes_count_past_month_of_videos + c.dislikes_count_past_month_of_videos)
         if t == 0
           0

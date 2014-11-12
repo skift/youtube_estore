@@ -1,11 +1,12 @@
 require 'estore_conventions'
-require 'active_record_content_blob'
 
 module YoutubeEstore
   class Video < ActiveRecord::Base
     include EstoreConventions
-    include ActiveRecordContentBlob::Blobable
-    
+
+    # deprecated in BlobRemoval
+    # include ActiveRecordContentBlob::Blobable
+
 
     attr_datetime :published_at
 
@@ -13,7 +14,7 @@ module YoutubeEstore
 
     belongs_to :channel, primary_key: :t_id
 
-    attr_accessible :duration_seconds, :category_id, :description, :title, :published_at, :view_count, :favorite_count, :is_embeddable, :likes, :dislikes, :approval_rating, :t_id, 
+    attr_accessible :duration_seconds, :category_id, :description, :title, :published_at, :view_count, :favorite_count, :is_embeddable, :likes, :dislikes, :approval_rating, :t_id,
       :channel_id, :username, :default_thumbnail, :category_id, :comment_count
 
     def link
@@ -131,7 +132,7 @@ module YoutubeEstore
     def self.shortest
       self.order('duration_seconds ASC').first
     end
-    
+
     # untested, seperate from self.most_viewed
     # returns number of views
     def self.highest_view_count
@@ -202,7 +203,7 @@ module YoutubeEstore
     def self.convert_iso8601_to_seconds(string)
       if mtch = string.match(/^PT(?:(\d*)M)?(?:(\d*)S)?$/)
         min, sec = mtch[1..2]
-        
+
         total = min.to_i*60 + sec.to_i
       end
     end
